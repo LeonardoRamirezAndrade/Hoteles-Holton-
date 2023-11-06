@@ -1,6 +1,6 @@
 import numpy as np
 
-class Habitación:
+class Habitacion:
     def __init__(self, estado:str, numero:int, zona:str, maximoHuespedes:int):
         self.estado = estado
         self.numero = numero

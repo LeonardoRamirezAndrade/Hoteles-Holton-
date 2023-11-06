@@ -1,3 +1,4 @@
+from Hotel import Hotel
 
 class Cadena:
     def __init__(self, nombre:str):
@@ -24,13 +25,13 @@ class Cadena:
                 totalIngresos += hotel.CalcularIngresosObtenidos()
         return totalIngresos
 
-    def CalcularTotalDeHuespedesAtendidos(self)-> int:
-        pass
-
-    def CalcularCantidadTotalDeHabitacionesOcupadas(self)->int:
-        pass
-    
-    def CalcularPorcentajeDeHombres_Y_MujersQueSeHanAtendido(self)-> list:
-        pass
+#    def CalcularTotalDeHuespedesAtendidos(self)-> int:
+#        pass
+#
+#    def CalcularCantidadTotalDeHabitacionesOcupadas(self)->int:
+#        pass
+#    
+#    def CalcularPorcentajeDeHombres_Y_MujersQueSeHanAtendido(self)-> list:
+#        pass
     
 

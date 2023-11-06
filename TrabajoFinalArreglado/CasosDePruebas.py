@@ -1,22 +1,25 @@
-from Hotel import Hotel
-from Huesped import Huesped
-from Habitación import Habitación
+from Hotel import *
+from Cadena import *
+
+# Crear una instancia de Cadena
+cadena = Cadena("Mi Cadena de Hoteles")
 
 # Crear una instancia de Hotel
-# Crear una instancia de la clase Hotel
 hotel = Hotel("Bogotá", "Hotel Estelar", "5 estrellas", 12, 6, "De lujo")
 
-# Mostrar información del hotel
-print(f"Hotel: {hotel.nombre}")
-print(f"Ciudad: {hotel.ciudad}")
-print(f"Tipo de Hotel: {hotel.tipoDeHotel}")
-print(f"Pisos: {hotel.pisos}")
-print(f"Habitaciones por piso: {hotel.habitacionesPorPiso}")
-print(f"Cantidad total de habitaciones: {hotel.cantidadTotalDeHabitaciones}")
+# Agregar el hotel a la cadena
+if cadena.AgregarHotel(hotel):
+    print("Hotel agregado con éxito a la cadena.")
+else:
+    print("No se pudo agregar el hotel a la cadena.")
 
-# Recomendar una habitación
-habitacion = hotel.RecomendarHabitación(2, "Piso 1")
-if habitacion:
-    print(f"Habitación recomendada: {habitacion.numero} en el {habitacion.piso}")
+# Mostrar los ingresos totales obtenidos por la cadena
+total_ingresos = cadena.CalcularIngresosTotalesObtenidos()
+print(f"Ingresos totales de la cadena: ${total_ingresos}")
+
+# Recomendar una habitación en el hotel
+habitacion_recomendada = hotel.RecomendarHabitación(2, "Piso 1")
+if habitacion_recomendada:
+    print(f"Habitación recomendada: {habitacion_recomendada.numero} en el {habitacion_recomendada.piso}")
 else:
     print("No se encontraron habitaciones disponibles que cumplan con los criterios.")

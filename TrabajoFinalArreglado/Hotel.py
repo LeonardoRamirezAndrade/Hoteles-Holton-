@@ -1,8 +1,7 @@
 from datetime import date
 import numpy as np
 import random
-from cadena import Cadena
-from Habitación import Habitación
+from Habitacion import Habitacion
 
 
 MAXIMODEPERSONAS = 4
@@ -21,8 +20,6 @@ class Hotel:
                 self.habitaciones = np.full((pisos, habitacionesPorPiso), None)  # Matriz para almacenar las habitaciones
                 self.cantidadTotalDeHabitaciones = pisos * habitacionesPorPiso
                 self.zona = zona
-                self.CrearHabitaciones()
-
 
     def CrearHabitaciones(self):
     # Inicializar las habitaciones del hotel
