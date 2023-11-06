@@ -1,5 +1,3 @@
-from Huesped import Huesped
-from Hotel import Hotel
 
 class Cadena:
     def __init__(self, nombre:str):
@@ -19,7 +17,7 @@ class Cadena:
             hotelAgregado = True
         return hotelAgregado
 
-    def CalcularIngresosTotalesObtenidos(self)-> bool:
+    def CalcularIngresosTotalesObtenidos(self)-> float:
         totalIngresos = 0
         if len(self.hoteles) > 0:
             for hotel in self.hoteles:

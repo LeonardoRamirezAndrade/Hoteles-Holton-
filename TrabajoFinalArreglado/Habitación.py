@@ -9,12 +9,13 @@ class Habitación:
         self.huespedes = []
         self.estados = ('Libre', 'Ocupada', 'No habilitada')
         self.fechaIngresoHuespedes = None
-        self.fehaSalidaHuespedes = None
-        self.ValidarAtributosHabitación()
+        self.fechaSalidaHuespedes = None
+        self.ValidarAtributosHabitación()  # Llama a la función de validación en el constructor
+
 
     def ValidarAtributosHabitación(self):
         minimaCadena = 1
         if len(self.estado) < minimaCadena:
             raise ValueError("Este campo no puede ir vacío, debe ingresar el estado de la habitación")
         if self.estado not in self.estados:
-             raise ValueError("El tipo de estado ingresado no es correcto")
+            raise ValueError("El tipo de estado ingresado no es correcto")
