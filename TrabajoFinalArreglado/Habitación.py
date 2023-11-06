@@ -18,8 +18,3 @@ class Habitación:
             raise ValueError("Este campo no puede ir vacío, debe ingresar el estado de la habitación")
         if self.estado not in self.estados:
              raise ValueError("El tipo de estado ingresado no es correcto")
-
-    
-
-    
-    

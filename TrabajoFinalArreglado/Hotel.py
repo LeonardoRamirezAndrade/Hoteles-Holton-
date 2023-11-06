@@ -6,7 +6,6 @@ from array import array
 
 import random
 
-
 class Hotel:
 
     def __init__(self, ciudad:str, nombre:str, tipoDeHotel:str, pisos:int, habitacionesPorPiso:int):
@@ -22,14 +21,19 @@ class Hotel:
                 self.CrearHabitaciones()
 
     def CrearHabitaciones(self):
-        pass
+        for pisos in range(self.pisos):
+            for NumeroDeHabitacion in range(self.habitacionesPorPiso):
+                estado = 'Libre'
+                numero = NumeroDeHabitacion + 1
+                zona = f"Piso {pisos + 1}"
+                maximo_personas = 4
 
     def mostrarHotel(self):
         pass
     
     def RecomendarHabitación(self) ->int:
         pass
-    
+
     def AsignarHabitación(self ) ->bool:
         pass
     
