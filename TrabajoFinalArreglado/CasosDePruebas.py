@@ -5,7 +5,7 @@ from cadena import *
 cadena = Cadena("Mi Cadena de Hoteles")
 
 # Crear una instancia de Hotel
-hotel = Hotel("Bogotá", "Hotel Estelar", "5 estrellas", 12, 6, "De lujo")
+hotel = Hotel("Bogotá", "Hotel Estelar", "5 estrellas", 12, 7, "De lujo")
 
 # Agregar el hotel a la cadena
 if cadena.AgregarHotel(hotel):
