@@ -5,15 +5,15 @@ class Habitacion:
         self.estado = estado
         self.numero = numero
         self.zona = zona
-        self.maximoPersonasHabitación = maximoHuespedes
+        self.maximoPersonasHabitacion = maximoHuespedes
         self.huespedes = []
         self.estados = ('Libre', 'Ocupada', 'No habilitada')
         self.fechaIngresoHuespedes = None
         self.fechaSalidaHuespedes = None
-        self.ValidarAtributosHabitación()  # Llama a la función de validación en el constructor
+        self.ValidarAtributosHabitacion()  # Llama a la función de validación en el constructor
 
 
-    def ValidarAtributosHabitación(self):
+    def ValidarAtributosHabitacion(self):
         minimaCadena = 1
         if len(self.estado) < minimaCadena:
             raise ValueError("Este campo no puede ir vacío, debe ingresar el estado de la habitación")

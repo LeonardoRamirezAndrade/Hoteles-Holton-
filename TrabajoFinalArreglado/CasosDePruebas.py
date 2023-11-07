@@ -1,5 +1,5 @@
 from Hotel import *
-from Cadena import *
+from cadena import *
 
 # Crear una instancia de Cadena
 cadena = Cadena("Mi Cadena de Hoteles")
@@ -18,7 +18,7 @@ total_ingresos = cadena.CalcularIngresosTotalesObtenidos()
 print(f"Ingresos totales de la cadena: ${total_ingresos}")
 
 # Recomendar una habitación en el hotel
-habitacion_recomendada = hotel.RecomendarHabitación(2, "Piso 1")
+habitacion_recomendada = hotel.RecomendarHabitacion(2, "Piso 1")
 if habitacion_recomendada:
     print(f"Habitación recomendada: {habitacion_recomendada.numero} en el {habitacion_recomendada.piso}")
 else:

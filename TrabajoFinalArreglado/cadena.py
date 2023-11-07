@@ -9,11 +9,12 @@ class Cadena:
         self.numerosDePisos = (6, 9, 12, 15)
         
 
-    def AgregarHotel(self, hotel:Hotel)-> bool:
+    def AgregarHotel(self, hotel: Hotel) -> bool:
         hotelAgregado = False
         if (hotel.habitacionesPorPiso <= hotel.pisos and
             hotel.pisos in self.numerosDePisos and
-            hotel.tipo in self.tiposDeHotel):
+            hotel.tipoDeHotel in self.tiposDeHotel):
+
             self.hoteles.append(hotel)
             hotelAgregado = True
         return hotelAgregado

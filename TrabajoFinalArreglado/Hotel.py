@@ -29,19 +29,20 @@ class Hotel:
                 numero = numeroDeHabitacion + 1
                 piso = f"Piso {piso + 1}"
                 # Crear una instancia de Habitación y asignarla a la matriz de habitaciones del hotel
-                self.habitaciones[piso][numeroDeHabitacion] = Habitación(estado, numero, self.zona, MAXIMODEPERSONAS)
+                self.habitaciones[piso][numeroDeHabitacion] = Habitacion(estado, numero, self.zona, MAXIMODEPERSONAS)
 
 
     def mostrarHotel(self):
         pass
     
-    def RecomendarHabitación(self, cantidadHuespedes, piso) -> int:
+    def RecomendarHabitacion(self, cantidadHuespedes, piso) -> int:
         habitacionesDisponibles = []
         for pisoActual in range(self.pisos):
             for habitacion in self.habitaciones[pisoActual]:
-                # Verificar si la habitación cumple con los criterios para ser recomendada
-                if habitacion.estado == 'Libre' and habitacion.maximoPersonasHabitacion >= cantidadHuespedes and habitacion.piso == pisoActual:
-                    habitacionesDisponibles.append(habitacion)
+                if habitacion is not None:
+                    # Verificar si la habitación cumple con los criterios para ser recomendada
+                    if habitacion.estado == 'Libre' and habitacion.maximoPersonasHabitacion >= cantidadHuespedes and habitacion.piso == pisoActual:
+                        habitacionesDisponibles.append(habitacion)
         if habitacionesDisponibles:
             # Si se encontraron habitaciones disponibles, elige una al azar
             habitacionRecomendada = random.choice(habitacionesDisponibles)
@@ -50,40 +51,41 @@ class Hotel:
             return None
 
 
-    
-    def AsignarHabitación(self ) ->bool:
-        pass
-    
-    
-    def Aceder_A_DatosHuespedesDeUnaHabitaciòn(self)-> bool:
-        pass
 
-    def RegistrarSalidaDeHuespedes(self) ->bool:
-        pass
-
-
-
-    def CalcularMonto_A_PagarHuspedesDeUnaHabitaciòn(self) ->float:
-        pass
-    
-    def EstablecerHabitaciónComoNoDisponible(self) -> bool:
-        pass
-            
-
-    def CalcularIngresosObtenidos(self):
-        pass
-
-    def CalcularCantidadDeHuespedesAtendidos(self) -> int:
-        pass
-
-    def CalcularCantidadDeHabitacionesOcupadas(self) -> int:
-        pass
-
-    def DeterminarZonaConMayorAfluencia(self) -> str:
-        pass
-
-    def CalcularTasaDeOcupaciòn(self) -> float:
-        pass
-
-    def CalcularCantidadDeHombresYMujeresAtendidos(self) -> int:
-        pass
+#    
+#    def AsignarHabitacion(self ) ->bool:
+#        pass
+#    
+#    
+#    def Aceder_A_DatosHuespedesDeUnaHabitaciòn(self)-> bool:
+#        pass
+#
+#    def RegistrarSalidaDeHuespedes(self) ->bool:
+#        pass
+#
+#
+#
+#    def CalcularMonto_A_PagarHuspedesDeUnaHabitaciòn(self) ->float:
+#        pass
+#    
+#    def EstablecerHabitacionComoNoDisponible(self) -> bool:
+#        pass
+#            
+#
+#    def CalcularIngresosObtenidos(self):
+#        pass
+#
+#    def CalcularCantidadDeHuespedesAtendidos(self) -> int:
+#        pass
+#
+#    def CalcularCantidadDeHabitacionesOcupadas(self) -> int:
+#        pass
+#
+#    def DeterminarZonaConMayorAfluencia(self) -> str:
+#        pass
+#
+#    def CalcularTasaDeOcupaciòn(self) -> float:
+#        pass
+#
+#    def CalcularCantidadDeHombresYMujeresAtendidos(self) -> int:
+#        pass
