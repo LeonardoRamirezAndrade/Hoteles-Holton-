@@ -25,6 +25,7 @@ huespedes = []
 huespedes.append(Huesped("Juan Perez", 1082908063, "12/12/1990", "M", "12/12/2023", ""))
 huespedes.append(Huesped("Maria Perez", 1082908063, "12/12/1990", "F", "12/12/2023", ""))
 huespedes.append(Huesped("Jose Perez", 1082908063, "12/12/1990", "M", "12/12/2023", ""))
+huespedes.append(Huesped("Pedro Perez", 1082908063, "12/12/1990", "M", "12/12/2023", ""))
 
 
 print(cadena.hoteles[1].mostrarHabitaciones())
