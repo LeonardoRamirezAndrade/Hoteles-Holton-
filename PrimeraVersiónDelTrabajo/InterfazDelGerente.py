@@ -2,7 +2,10 @@ import numpy as np
 import csv
 import os
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> leoMasJona
 def identificarError(opciones, mensajeParaGerente):
     while True:
         try:
@@ -99,4 +102,8 @@ if __name__ == "__main__":
         2: "9 pisos",
         3: "12 pisos",
         4: "15 pisos"
+<<<<<<< HEAD
     } 
+=======
+    } 
+>>>>>>> leoMasJona
