@@ -1,5 +1,6 @@
 import math
 import numpy as np
+from huesped import *
 from habitacion import *
 
 class Hotel:
@@ -12,7 +13,7 @@ class Hotel:
         self.numHabitacionesPorPiso = numHabitacionesPorPiso
         self.habitacionesH = np.full((numPisos, numHabitacionesPorPiso), None) 
         self.precioBase = precioBase
-        self.zonasHotel = ('Basica', 'Preferencial', 'De lujo')
+        self.zonasHotel = ('basica', 'preferencial', 'de lujo')
         self.estadoHabitacion = ('libre', 'ocupada', 'no habilitada para uso')
         self.ganaciasTotalesTemporales = 0
         self.numeroMaximoHuespedes = numeroMaximoHuespedes
@@ -29,7 +30,7 @@ class Hotel:
         for i in range(self.numPisos):
             for j in range(self.numHabitacionesPorPiso):
                 numHabitacion = ((i+1)*100)+(j+1)
-                estadoHab = Habitacion(self.estadoHabitacion[0])
+                estadoHab = self.estadoHabitacion[0]
                 if(i >= 0 and i < preferencial):
                     self.habitacionesH[i][j] = Habitacion(estadoHab, numHabitacion, self.zonasHotel[0], 0, precioBasico, self.numeroMaximoHuespedes)  
                 elif(i >= preferencial and i < deLujo): 
@@ -48,6 +49,24 @@ class Hotel:
         return datosHabitaciones
     
     #Historia de usuario # 2: retornes vector con las habitaciones recomendadas
+    def recomendarHabitaciones(self, cantidadHuespedes:int, zonaPreferida: str):
+        cantidadH = -1;
+        if(cantidadHuespedes>0 and cantidadHuespedes <= self.numeroMaximoHuespedes):
+            cantidadH = cantidadHuespedes
+        zonaPref = ""
+        if(zonaPreferida in self.zonasHotel):
+            zonaPref = zonaPreferida
+
+        habitacionesRecomendadas = []
+        if(cantidadH != -1 and zonaPref != ""):
+            for i in range(self.numPisos):
+                for j in range(self.numHabitacionesPorPiso):
+                    if(self.habitacionesH[i][j].zona == zonaPref and self.habitacionesH[i][j].estado == self.estadoHabitacion[0]):
+                        habitacionesRecomendadas.append(self.habitacionesH[i][j])
+        return habitacionesRecomendadas
+
+
+
 
     #Historia de usuario # 3: funcion (numero habitacion, piso, huespedesPasados[])
         #aqui vas a recorrer las habitaciones y vas a buscar la que dijo el usuario, si esta disponible entonces 
@@ -56,11 +75,41 @@ class Hotel:
         habitacionEncontrada.huespedes = pasados[]
 
         osea, en la interfaz debes pedir cuantos huespedes se van a quedar  y vas a hacer un while pidiendo cada huesped, lo agregas a un vector y se lo mandas a esta vaina
+        
         """
+    def asignarHabitacion(self, numeroHabitacion: int, huespedesPasados: list[Huesped]):
+        habitacionEncontrada = None
+        for i in range(self.numPisos):
+            for j in range(self.numHabitacionesPorPiso):
+                if(self.habitacionesH[i][j].numeroHabitacion == numeroHabitacion and self.habitacionesH[i][j].estado == self.estadoHabitacion[0]):
+                    habitacionEncontrada = self.habitacionesH[i][j]
+                    break
+        if(habitacionEncontrada != None):
+            if(len(huespedesPasados) <= self.numeroMaximoHuespedes and len(huespedesPasados) > 0):
+                habitacionEncontrada.huespedes = huespedesPasados
+                habitacionEncontrada.estado = self.estadoHabitacion[1]
+            else:
+                print("No se puede asignar la habitacion, la cantidad de huespedes es incorrecta")
+        else:
+            print("No se encontro la habitacion")
+
+
 
     #Historia de usuario # 4: crea un metodo igual que datosHabitacion que está en la clase habitación
         #Osea, dentro de huesped vas a crear mostrarDatosHuesped y dentro de Habitacion vas a crear mostrarHuespedes
         #osea, mostrarHuespedes va a ser similar a lo que haces en mostrar habitación dentro de Hotel
+
+    def mostrarHuespedes(self, numeroHabitacion:int) -> str:
+        datosHuespedes = ""
+        habitacionEncontrada = None
+        for i in range(self.numPisos):
+            for j in range(self.numHabitacionesPorPiso):
+                if(self.habitacionesH[i][j].numeroHabitacion == numeroHabitacion):
+                    habitacionEncontrada = self.habitacionesH[i][j]
+        if(habitacionEncontrada != None):
+            datosHuespedes = habitacionEncontrada.mostrarDatosHuespedes()
+        return datosHuespedes
+
 
     #Historia de usuario # 5:  
 
