@@ -20,3 +20,18 @@ El método `agregarHotel` se utiliza para agregar un nuevo hotel a la cadena Hol
 - Número de pisos.
 - Número de habitaciones por piso.
 - Ciudad.
+
+### Método Mostrar Hoteles
+
+El método `mostrarHoteles` se encarga de mostrar todos los hoteles almacenados en la cadena. Para cada hotel, muestra los siguientes datos:
+
+- Ciudad.
+- Nombre.
+- Tipo de hotel.
+- Número de pisos.
+- Número de habitaciones por piso.
+- Precio base por noche por persona.
+- Zonas del hotel.
+- Información detallada de las habitaciones.
+
+Este método realiza una iteración de los datos almacenados en `self.hoteles` y muestra la información de cada hotel.
