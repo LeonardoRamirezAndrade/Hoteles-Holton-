@@ -10,7 +10,13 @@ class Habitacion:
 
 
     def datosHabitacion(self) -> str:
-        return f"{self.numeroHabitacion} - {self.precioNoches} / " 
+        return f"{self.numeroHabitacion} - {self.precioNoches} - {self.estado} / " 
+    
+    def mostrarDatosHuespedes(self) -> str:
+        datosHuespedes = ""
+        for i in self.huespedes:
+            datosHuespedes += f"{i.datosHuesped()}\n"
+        return datosHuespedes
 
 
 

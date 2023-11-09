@@ -27,7 +27,7 @@ class CadenaHolton:
             numHabitacionesPiso = numHabitacionesPorPiso
 
         if(tipoHotel != () and numDePisos != -1 and numHabitacionesPiso != -1):
-            hotel = Hotel(ciudad, self.nombre + "-"+tipoDeHotel[0], tipoDeHotel[0], numDePisos, numHabitacionesPiso, tipoDeHotel[1], self.numMaxPersonasPorHabitacion)
+            hotel = Hotel(ciudad, (self.nombre + " " + ciudad), tipoDeHotel[0], numDePisos, numHabitacionesPiso, precioBase = tipoDeHotel[1], numeroMaximoHuespedes = self.numMaxPersonasPorHabitacion)
             self.hoteles.append(hotel)
             return True
         else:
