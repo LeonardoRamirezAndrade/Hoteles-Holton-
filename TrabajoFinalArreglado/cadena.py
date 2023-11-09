@@ -15,20 +15,11 @@ class Cadena:
         self.numerosDePisos = (6, 9, 12, 15)
         
 
-<<<<<<< HEAD
-    def AgregarHotel(self, hotel: Hotel) -> bool:
-        hotelAgregado = False
-        if (hotel.habitacionesPorPiso <= hotel.pisos and
-            hotel.pisos in self.numerosDePisos and
-            hotel.tipoDeHotel in self.tiposDeHotel):
-
-=======
     def AgregarHotel(self, hotel:Hotel)-> bool:
         hotelAgregado = False
         if (hotel.habitacionesPorPiso <= hotel.pisos and
             hotel.pisos in self.numerosDePisos and
             hotel.tipo in self.tiposDeHotel):
->>>>>>> leoMasJona
             self.hoteles.append(hotel)
             hotelAgregado = True
         return hotelAgregado
@@ -40,7 +31,7 @@ class Cadena:
                 totalIngresos += hotel.CalcularIngresosObtenidos()
         return totalIngresos
 
-<<<<<<< HEAD
+
 #    def CalcularTotalDeHuespedesAtendidos(self)-> int:
 #        pass
 #
@@ -49,15 +40,14 @@ class Cadena:
 #    
 #    def CalcularPorcentajeDeHombres_Y_MujersQueSeHanAtendido(self)-> list:
 #        pass
-=======
-    def CalcularTotalDeHuespedesAtendidos(self)-> int:
-        pass
 
-    def CalcularCantidadTotalDeHabitacionesOcupadas(self)->int:
-        pass
-    
-    def CalcularPorcentajeDeHombres_Y_MujersQueSeHanAtendido(self)-> list:
-        pass
->>>>>>> leoMasJona
-    
+ #   def CalcularTotalDeHuespedesAtendidos(self)-> int:
+ #       pass
+ #
+ #   def CalcularCantidadTotalDeHabitacionesOcupadas(self)->int:
+ #       pass
+ #   
+ #   def CalcularPorcentajeDeHombres_Y_MujersQueSeHanAtendido(self)-> list:
+ #       pass
+ 
 
