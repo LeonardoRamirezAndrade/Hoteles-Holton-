@@ -5,7 +5,7 @@ from habitacion import *
 
 class Hotel:
 
-    def __init__(self, ciudad: str,nombre:str, tipoDeHotel: str, numPisos: int, numHabitacionesPorPiso: int, precioBase: float, numeroMaximoHuespedes:int):
+    def __init__(self, ciudad: str,nombre:str, tipoDeHotel: str, numPisos: int, numHabitacionesPorPiso: int, precioBase: float, numeroMaximoHuespedes:int): #Constructor de la clase hotel
         self.ciudad = ciudad
         self.nombre = nombre
         self.tipoDeHotel = tipoDeHotel
@@ -19,27 +19,27 @@ class Hotel:
         self.numeroMaximoHuespedes = numeroMaximoHuespedes
         self.llenarhabitaciones()
 
-    def llenarhabitaciones(self):
-        preferencial = math.ceil(self.numPisos*(1/3))  
+    def llenarhabitaciones(self): #Metodo para llenar las habitaciones del hotel
+        preferencial = math.ceil(self.numPisos*(1/3))  #Esto hace que la preferencial ocupe el 33.33% de los pisos
         deLujo = math.ceil(self.numPisos*(2/3))  
 
-        precioBasico = self.precioBase
-        precioPreferencial = precioBasico*0.15 + precioBasico
+        precioBasico = self.precioBase 
+        precioPreferencial = precioBasico*0.15 + precioBasico #Esta parte del codigo hace que el precio preferencial se le adicione el 15% del precio base, y al precio de lujo se le adicione el 20% del precio base
         precioDeLujo = precioBasico*0.2 + precioBasico
 
-        for i in range(self.numPisos):
+        for i in range(self.numPisos): #Se llena la matriz de habitaciones
             for j in range(self.numHabitacionesPorPiso):
-                numHabitacion = ((i+1)*100)+(j+1)
-                estadoHab = self.estadoHabitacion[0]
-                if(i >= 0 and i < preferencial):
-                    self.habitacionesH[i][j] = Habitacion(estadoHab, numHabitacion, self.zonasHotel[0], 0, precioBasico, self.numeroMaximoHuespedes)  
-                elif(i >= preferencial and i < deLujo): 
+                numHabitacion = ((i+1)*100)+(j+1) #Se calcula el numero de habitacion
+                estadoHab = self.estadoHabitacion[0] 
+                if(i >= 0 and i < preferencial):  #Se asigna la zona de la habitacion
+                    self.habitacionesH[i][j] = Habitacion(estadoHab, numHabitacion, self.zonasHotel[0], 0, precioBasico, self.numeroMaximoHuespedes)   #esta parte del codigo hace que se cree una habitacion con los datos que se le pasan al constructor de la clase habitacion 
+                elif(i >= preferencial and i < deLujo):  
                     self.habitacionesH[i][j] = Habitacion(estadoHab, numHabitacion, self.zonasHotel[1], 0, precioPreferencial, self.numeroMaximoHuespedes) 
                 elif(i >= deLujo) :
                     self.habitacionesH[i][j] = Habitacion(estadoHab, numHabitacion, self.zonasHotel[2], 0, precioDeLujo, self.numeroMaximoHuespedes)
 
     
-    def mostrarHabitaciones(self) -> str:
+    def mostrarHabitaciones(self) -> str: #Metodo para mostrar las habitaciones del hotel
         datosHabitaciones = ""
         for i in range(self.numPisos):
             for j in range(self.numHabitacionesPorPiso):
@@ -49,7 +49,7 @@ class Hotel:
         return datosHabitaciones
     
     #Historia de usuario # 2: retornes vector con las habitaciones recomendadas
-    def recomendarHabitaciones(self, cantidadHuespedes:int, zonaPreferida: str):
+    def recomendarHabitaciones(self, cantidadHuespedes:int, zonaPreferida: str): #Metodo para recomendar habitaciones
         cantidadH = -1;
         if(cantidadHuespedes>0 and cantidadHuespedes <= self.numeroMaximoHuespedes):
             cantidadH = cantidadHuespedes
@@ -58,7 +58,7 @@ class Hotel:
             zonaPref = zonaPreferida
 
         habitacionesRecomendadas = []
-        if(cantidadH != -1 and zonaPref != ""):
+        if(cantidadH != -1 and zonaPref != ""): #Si los datos son validos se recomiendan las habitaciones
             for i in range(self.numPisos):
                 for j in range(self.numHabitacionesPorPiso):
                     if(self.habitacionesH[i][j].zona == zonaPref and self.habitacionesH[i][j].estado == self.estadoHabitacion[0]):
