@@ -1,5 +1,5 @@
-class Huesped:
-    def __init__(self, nombreCompleto:str, cedula:int, fechaNacimiento: str, sexo:str, fechaEntrada:str, fechaSalida:str):  
+class Huesped: 
+    def __init__(self, nombreCompleto:str, cedula:int, fechaNacimiento: str, sexo:str, fechaEntrada:str, fechaSalida:str):  #Constructor de la clase huesped
         self.nombreCompleto = nombreCompleto
         self.cedula = cedula
         self.fechaNacimiento = fechaNacimiento

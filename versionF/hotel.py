@@ -1,4 +1,4 @@
-import math
+import math #Importamos la libreria math para poder usar el metodo ceil que redondea un numero hacia arriba
 import numpy as np
 from huesped import *
 from habitacion import *
@@ -11,7 +11,7 @@ class Hotel:
         self.tipoDeHotel = tipoDeHotel
         self.numPisos = numPisos
         self.numHabitacionesPorPiso = numHabitacionesPorPiso
-        self.habitacionesH = np.full((numPisos, numHabitacionesPorPiso), None) 
+        self.habitacionesH = np.full((numPisos, numHabitacionesPorPiso), None) #Se crea una matriz de habitaciones en la cual el none se usa para indicar que la habitacion esta vacia
         self.precioBase = precioBase
         self.zonasHotel = ('basica', 'preferencial', 'de lujo')
         self.estadoHabitacion = ('libre', 'ocupada', 'no habilitada para uso')
@@ -27,15 +27,15 @@ class Hotel:
         precioPreferencial = precioBasico*0.15 + precioBasico #Esta parte del codigo hace que el precio preferencial se le adicione el 15% del precio base, y al precio de lujo se le adicione el 20% del precio base
         precioDeLujo = precioBasico*0.2 + precioBasico
 
-        for i in range(self.numPisos): #Se llena la matriz de habitaciones
-            for j in range(self.numHabitacionesPorPiso):
+        for i in range(self.numPisos): 
+            for j in range(self.numHabitacionesPorPiso): #Estos dos for los usamos para crear la matriz
                 numHabitacion = ((i+1)*100)+(j+1) #Se calcula el numero de habitacion
                 estadoHab = self.estadoHabitacion[0] 
-                if(i >= 0 and i < preferencial):  #Se asigna la zona de la habitacion
+                if(i >= 0 and i < preferencial):  #Se asigna la zona de la habitacion en este caso basica
                     self.habitacionesH[i][j] = Habitacion(estadoHab, numHabitacion, self.zonasHotel[0], 0, precioBasico, self.numeroMaximoHuespedes)   #esta parte del codigo hace que se cree una habitacion con los datos que se le pasan al constructor de la clase habitacion 
-                elif(i >= preferencial and i < deLujo):  
+                elif(i >= preferencial and i < deLujo):  #Se asigna la zona de la habitacion en este caso preferencial
                     self.habitacionesH[i][j] = Habitacion(estadoHab, numHabitacion, self.zonasHotel[1], 0, precioPreferencial, self.numeroMaximoHuespedes) 
-                elif(i >= deLujo) :
+                elif(i >= deLujo) : #Se asigna la zona de la habitacion en este caso de lujo
                     self.habitacionesH[i][j] = Habitacion(estadoHab, numHabitacion, self.zonasHotel[2], 0, precioDeLujo, self.numeroMaximoHuespedes)
 
     
@@ -43,12 +43,19 @@ class Hotel:
         datosHabitaciones = ""
         for i in range(self.numPisos):
             for j in range(self.numHabitacionesPorPiso):
-                datosHabitaciones += f"{self.habitacionesH[i][j].datosHabitacion()}"
+                datosHabitaciones += f"{self.habitacionesH[i][j].datosHabitacion()}" 
                 
             datosHabitaciones += "\n"
         return datosHabitaciones
     
     #Historia de usuario # 2: retornes vector con las habitaciones recomendadas
+    #    Como Gerente de 
+    #Holtons en Colombia, quiero calcular el monto 
+    #que los huéspedes de una habitación deben 
+    #pagar al momento de su salida, asegurando que 
+    #la cantidad se determine según las reglas y 
+    #tarifas de cobro de la empresa
+
     def recomendarHabitaciones(self, cantidadHuespedes:int, zonaPreferida: str): #Metodo para recomendar habitaciones
         cantidadH = -1;
         if(cantidadHuespedes>0 and cantidadHuespedes <= self.numeroMaximoHuespedes):
@@ -58,25 +65,20 @@ class Hotel:
             zonaPref = zonaPreferida
 
         habitacionesRecomendadas = []
-        if(cantidadH != -1 and zonaPref != ""): #Si los datos son validos se recomiendan las habitaciones
+        if(cantidadH != -1 and zonaPref != ""): #Si los datos son validos se recomiendan las habitaciones este 
             for i in range(self.numPisos):
                 for j in range(self.numHabitacionesPorPiso):
                     if(self.habitacionesH[i][j].zona == zonaPref and self.habitacionesH[i][j].estado == self.estadoHabitacion[0]):
                         habitacionesRecomendadas.append(self.habitacionesH[i][j])
         return habitacionesRecomendadas
 
+    #Historia de usuario # 3: Como Gerente de 
+    #Holtons en Colombia, quiero calcular el monto 
+    #que los huéspedes de una habitación deben 
+    #pagar al momento de su salida, asegurando que 
+    #la cantidad se determine según las reglas y 
+    #tarifas de cobro de la empresa
 
-
-
-    #Historia de usuario # 3: funcion (numero habitacion, piso, huespedesPasados[])
-        #aqui vas a recorrer las habitaciones y vas a buscar la que dijo el usuario, si esta disponible entonces 
-        """
-        Vas a guardar esa habitacion en una variable por ejp: habitacionEncontrada
-        habitacionEncontrada.huespedes = pasados[]
-
-        osea, en la interfaz debes pedir cuantos huespedes se van a quedar  y vas a hacer un while pidiendo cada huesped, lo agregas a un vector y se lo mandas a esta vaina
-        
-        """
     def asignarHabitacion(self, numeroHabitacion: int, huespedesPasados: list[Huesped]):
         habitacionEncontrada = None
         for i in range(self.numPisos):
@@ -95,9 +97,13 @@ class Hotel:
 
 
 
-    #Historia de usuario # 4: crea un metodo igual que datosHabitacion que está en la clase habitación
-        #Osea, dentro de huesped vas a crear mostrarDatosHuesped y dentro de Habitacion vas a crear mostrarHuespedes
-        #osea, mostrarHuespedes va a ser similar a lo que haces en mostrar habitación dentro de Hotel
+    #Historia de usuario # 4: Como Gerente de 
+    #Holtons en Colombia, quiero calcular el monto 
+    #que los huéspedes de una habitación deben 
+    #pagar al momento de su salida, asegurando que 
+    #la cantidad se determine según las reglas y 
+    #tarifas de cobro de la empresa
+    #crea un metodo igual que datosHabitacion que está en la clase habitación
 
     def mostrarHuespedes(self, numeroHabitacion:int) -> str:
         datosHuespedes = ""
@@ -111,10 +117,132 @@ class Hotel:
         return datosHuespedes
 
 
-    #Historia de usuario # 5:  
+    #Historia de usuario # 5:
+    #   Como Gerente de 
+    #Holtons en Colombia, quiero calcular el monto 
+    #que los huéspedes de una habitación deben 
+    #pagar al momento de su salida, asegurando que 
+    #la cantidad se determine según las reglas y 
+    #tarifas de cobro de la empresa
 
-    #Historia de usuario # 7:
-        #Debes crear un metodo que reciba el numero de habitacion
-        #Debes crear una variable y luego haces un for dentro de habitacionesH y buscas la habitacion que tenga el numero de habitacion que te pasaron
-        #Luego vas a hacer un por ejemplo si la variable la llamaste habitaciónEncontrada, haces un habitacionEncontrada.estado = self.estadoHabitacion[2]
+    def montoAPagar(self, numeroHabitacion:int) -> float:
+        monto = 0
+        habitacionEncontrada = None
+        for i in range(self.numPisos):
+            for j in range(self.numHabitacionesPorPiso):
+                if(self.habitacionesH[i][j].numeroHabitacion == numeroHabitacion):
+                    habitacionEncontrada = self.habitacionesH[i][j]
+                    numeroHuespedes = len(habitacionEncontrada.huespedes)
 
+        if(habitacionEncontrada != None and numeroHuespedes > 0):
+            monto = habitacionEncontrada.precioNoches * numeroHuespedes
+        return monto
+    
+    #    Historia de usuario # 6: Como Gerente de 
+    #Holtons en Colombia, quiero que las 
+    #habitaciones de huéspedes que acaban de 
+    #realizar su salida queden disponibles, para así 
+    #poder asignarlas a nuevos huéspedes que 
+    #lleguen a un hotel.
+
+    def desocuparHabitacion(self, numeroHabitacion:int):
+        habitacionEncontrada = None
+        for i in range(self.numPisos):
+            for j in range(self.numHabitacionesPorPiso):
+                if(self.habitacionesH[i][j].numeroHabitacion == numeroHabitacion):
+                    habitacionEncontrada = self.habitacionesH[i][j]
+                    break
+        if(habitacionEncontrada != None):
+            habitacionEncontrada.huespedes = []
+            habitacionEncontrada.estado = self.estadoHabitacion[0]
+        else:
+            print("No se encontro la habitación")
+    
+    # Historia de usuario # 7: Como Gerente de 
+    #Holtons en Colombia, deseo establecer como no 
+    #disponibles aquellas habitaciones que no estén 
+    #en condiciones óptimas, para asegurar que no 
+    #se asignen a huéspedes
+
+    def inhabilitarHabitaciones(self, numeroHabitacion:int):
+        habitacionEncontrada = None
+        for i in range(self.numPisos):
+            for j in range(self.numHabitacionesPorPiso):
+                if(self.habitacionesH[i][j].numeroHabitacion == numeroHabitacion):
+                    habitacionEncontrada = self.habitacionesH[i][j]
+                    break
+        if(habitacionEncontrada != None):
+            habitacionEncontrada.estado = self.estadoHabitacion[2]
+        else:
+            print("No se encontro la habitación")
+    
+    #    Historia de usuario # 8: Como Gerente 
+    #de Holtons en Colombia, deseo recibir un 
+    #informe detallado que muestre los ingresos 
+    #obtenidos por la cadena, el número de 
+    #huéspedes atendidos y la cantidad de 
+    #habitaciones ocupadas, para evaluar el 
+    #cumplimiento de nuestras metas 
+    #empresariales.
+
+    def mostrarInforme(self):
+        print("Ingresos totales: ", self.ganaciasTotalesTemporales)
+        print("Numero de huespedes atendidos: ", self.numeroHuespedesAtendidos)
+        print("Numero de habitaciones ocupadas: ", self.numeroHabitacionesOcupadas)
+
+    #Historia de usuario # 9: Como Gerente 
+    #de Holtons en Colombia, quisiera conocer 
+    #cuál es la zona del hotel con mayor 
+    #afluencia y la tasa de ocupación en 
+    #determinado momento, para impulsar 
+    #estrategias que incrementen la afluencia de 
+    #huéspedes en nuestros establecimientos.
+
+    def mostrarZonaMayorAfluencia(self):
+        zonaMayorAfluencia = ""
+        mayorAfluencia = 0
+        for i in range(self.numPisos):
+            for j in range(self.numHabitacionesPorPiso):
+                if(self.habitacionesH[i][j].estado == self.estadoHabitacion[1]):
+                    if(self.habitacionesH[i][j].zona == self.zonasHotel[0]):
+                        mayorAfluencia += 1
+                    elif(self.habitacionesH[i][j].zona == self.zonasHotel[1]):
+                        mayorAfluencia += 1
+                    elif(self.habitacionesH[i][j].zona == self.zonasHotel[2]):
+                        mayorAfluencia += 1
+        if(mayorAfluencia == 0):
+            zonaMayorAfluencia = "No hay habitaciones ocupadas"
+        elif(mayorAfluencia == 1):
+            zonaMayorAfluencia = "La zona con mayor afluencia es la basica"
+        elif(mayorAfluencia == 2):
+            zonaMayorAfluencia = "La zona con mayor afluencia es la preferencial"
+        elif(mayorAfluencia == 3):
+            zonaMayorAfluencia = "La zona con mayor afluencia es la de lujo"
+        return zonaMayorAfluencia
+    #    Historia de usuario # 10: Como 
+    #Gerente de Holtons en Colombia, quisiera 
+    #conocer el porcentaje histórico de hombres 
+    #y mujeres que se han alojado en los hoteles 
+    #de nuestra cadena. Esto con el objetivo de 
+    #determinar si existe alguna preferencia 
+    #según el sexo del huésped.
+
+    def mostrarPorcentajeHombresYMujeres(self):
+        porcentajeHombres = 0
+        porcentajeMujeres = 0
+        totalHombres = 0
+        totalMujeres = 0
+        for i in range(self.numPisos):
+            for j in range(self.numHabitacionesPorPiso):
+                if(self.habitacionesH[i][j].estado == self.estadoHabitacion[1]):
+                    for k in self.habitacionesH[i][j].huespedes:
+                        if(k.sexo == "Masculino"):
+                            totalHombres += 1
+                        elif(k.sexo == "Femenino"):
+                            totalMujeres += 1
+        if(totalHombres != 0):
+            porcentajeHombres = (totalHombres/(totalHombres+totalMujeres))*100
+        if(totalMujeres != 0):
+            porcentajeMujeres = (totalMujeres/(totalHombres+totalMujeres))*100
+        return porcentajeHombres, porcentajeMujeres
+    

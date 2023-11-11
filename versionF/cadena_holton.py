@@ -9,12 +9,11 @@ class CadenaHolton: #Clase que representa la cadena de hoteles Holton
         self.numerosDePisos = (6, 9, 12, 15) #Numero de pisos permitidos
         self.numMaxPersonasPorHabitacion = 4
         self.hoteles = [] #Lista de hoteles
-
-
+            
     def agregarHotel(self, tipoHotel:str, numPisos: int, numHabitacionesPorPiso: int, ciudad:str) -> bool: #Metodo para agregar un hotel a la cadena
         tipoDeHotel = () 
-        for h in self.tiposDeHotel: #Validacion de tipo de hotel
-            if(h[0] == tipoHotel): 
+        for h in self.tiposDeHotel:
+            if(h[0] == tipoHotel): #Si el tipo de hotel es valido se asigna a la variable tipoDeHotel
                 tipoDeHotel = h
                 break
 
@@ -26,7 +25,7 @@ class CadenaHolton: #Clase que representa la cadena de hoteles Holton
         if(numHabitacionesPorPiso > 0 and numHabitacionesPorPiso <= numDePisos ):
             numHabitacionesPiso = numHabitacionesPorPiso 
 
-        if(tipoHotel != () and numDePisos != -1 and numHabitacionesPiso != -1): #Si los datos son validos se agrega el hotel
+        if(tipoHotel != () and numDePisos != -1 and numHabitacionesPiso != -1):
             hotel = Hotel(ciudad, (self.nombre + " " + ciudad), tipoDeHotel[0], numDePisos, numHabitacionesPiso, precioBase = tipoDeHotel[1], numeroMaximoHuespedes = self.numMaxPersonasPorHabitacion) #Se crea el hotel
             self.hoteles.append(hotel)
             return True
