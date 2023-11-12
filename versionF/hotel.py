@@ -1,3 +1,5 @@
+#Hotel.py
+
 import math #Importamos la libreria math para poder usar el metodo ceil que redondea un numero hacia arriba
 import numpy as np
 from huesped import *
@@ -18,6 +20,7 @@ class Hotel:
         self.ganaciasTotalesTemporales = 0
         self.numeroMaximoHuespedes = numeroMaximoHuespedes
         self.llenarhabitaciones()
+
 
     def llenarhabitaciones(self): #Metodo para llenar las habitaciones del hotel
         preferencial = math.ceil(self.numPisos*(1/3))  #Esto hace que la preferencial ocupe el 33.33% de los pisos
@@ -49,7 +52,8 @@ class Hotel:
                 
             datosHabitaciones += "\n"
 
-        return datosImpresos #Se retorna un string con los datos de las habitaciones
+        return datosImpresos, datosHabitaciones
+     #Se retorna un string con los datos de las habitaciones
          
     
     #Historia de usuario # 2: retornes vector con las habitaciones recomendadas
@@ -76,28 +80,7 @@ class Hotel:
                         habitacionesRecomendadas.append(self.habitacionesH[i][j])
         return habitacionesRecomendadas
 
-    #Historia de usuario # 3: Como Gerente de 
-    #Holtons en Colombia, quiero calcular el monto 
-    #que los huéspedes de una habitación deben 
-    #pagar al momento de su salida, asegurando que 
-    #la cantidad se determine según las reglas y 
-    #tarifas de cobro de la empresa
-
-    def asignarHabitacion(self, numeroHabitacion: int, huespedesPasados: list[Huesped]):
-        habitacionEncontrada = None
-        for i in range(self.numPisos):
-            for j in range(self.numHabitacionesPorPiso):
-                if(self.habitacionesH[i][j].numeroHabitacion == numeroHabitacion and self.habitacionesH[i][j].estado == self.estadoHabitacion[0]):
-                    habitacionEncontrada = self.habitacionesH[i][j]
-                    break
-        if(habitacionEncontrada != None):
-            if(len(huespedesPasados) <= self.numeroMaximoHuespedes and len(huespedesPasados) > 0):
-                habitacionEncontrada.huespedes = huespedesPasados
-                habitacionEncontrada.estado = self.estadoHabitacion[1]
-            else:
-                print("No se puede asignar la habitacion, la cantidad de huespedes es incorrecta")
-        else:
-            print("No se encontro la habitacion")
+  
 
 
 

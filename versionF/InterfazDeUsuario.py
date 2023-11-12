@@ -1,7 +1,14 @@
+#IntefazDeUsuario.py
+
 from cadenaHolton import *
 from hotel import *
 from habitacion import *
 from huesped import *
+
+# Crear una instancia de CadenaHolton fuera de la función main
+cadenaHoltonInstance = CadenaHolton(input("Ingrese el nombre de la cadena de hoteles: "))
+
+cantidadDeHotelesIgualCero = len(cadenaHoltonInstance.hoteles) == 0
 
 def mostrarMenuPrincipal():
     print(f"Bienvenido a {cadenaHoltonInstance.nombre} ")
@@ -19,13 +26,12 @@ def mostrarMenuPrincipal():
     print("12. Salir")
 
 def main():
-    cadenaHoltonInstance = CadenaHolton(input("Ingrese el nombre de la cadena de hoteles: "))
 
     while True:
         mostrarMenuPrincipal()
 
         try:
-            opcion = int(input("Por favor, elija una opción (1-12): "))
+            opcion = int(input(" Por favor, elija una opción (1-12): "))
 
             if opcion == 1:
                 while True:
@@ -54,62 +60,56 @@ def main():
                     else:
                         print("Error al agregar el hotel. Verifique los datos ingresados.")
 
-                    if cadenaHoltonInstance.agregarHotel(tipoHotel, numPisos, numHabitacionesPorPiso, ciudad):
-                        print("Hotel agregado con éxito.")
-                        break  # Sale del bucle si el hotel se agregó con éxito
-                    else:
-                        print("Error al agregar el hotel. Verifique los datos ingresados.")
-
-
             elif opcion == 2:
                 cadenaHoltonInstance.mostrarHoteles()
-                if len(cadenaHoltonInstance.hoteles) == 0:
+                if not cadenaHoltonInstance.hoteles:
                     print("No hay hoteles registrados.")
+                    continue
 
             elif opcion == 3:
-                while True:
-                    notificacion = print("Cantidad de huéspedes: Debe ser menor o igual a 4.")
+                notificacion = print("Cantidad de huéspedes: Debe ser menor o igual a 4.")
+                cantidadHuespedes = int(input("Ingrese la cantidad de huéspedes: "))
+                if cantidadDeHotelesIgualCero:
+                    print("No hay hoteles registrados.")
+                    continue
+                if cantidadHuespedes > 4:
+                    print("Error: La cantidad de huéspedes no puede ser mayor a 4.")
+                    continue
+                elif cantidadHuespedes < 1:
+                    print("Error: La cantidad de huéspedes no puede ser menor a 1.")
+                    continue
 
-                    cantidadHuespedes = int(input("Ingrese la cantidad de huéspedes: "))
+                zonaPreferida = input("Ingrese la zona preferida (basica/preferencial/de lujo): ")
+                zonaPreferida = zonaPreferida.lower()
+                if zonaPreferida not in ("basica", "preferencial", "de lujo"):
+                    print("Error: La zona preferida ingresada no es válida.")
+                    continue
 
-                    if cadenaHoltonInstance.hoteles == []:
-                        print("No hay hoteles registrados.")
-                        continue
-
-                    if cantidadHuespedes > 4:
-                        print("Error: La cantidad de huéspedes no puede ser mayor a 4.")
-                        continue
-                    elif cantidadHuespedes < 1:
-                        print("Error: La cantidad de huéspedes no puede ser menor a 1.")
-                        continue
-
-                    zonaPreferida = input("Ingrese la zona preferida (basica/preferencial/de lujo): ")
-                    zonaPreferida = zonaPreferida.lower()
-                    if zonaPreferida not in ("basica", "preferencial", "de lujo"):
-                        print("Error: La zona preferida ingresada no es válida.")
-                        continue
-
-                    if cadenaHoltonInstance.hoteles:
-                        hotel_seleccionado = cadenaHoltonInstance.hoteles[0]  # Aquí deberías seleccionar el hotel adecuado según tus necesidades
-                        habitacionesRecomendadas = hotel_seleccionado.recomendarHabitaciones(cantidadHuespedes, zonaPreferida)
-                        print("Habitaciones recomendadas:")
-                        for habitacion in habitacionesRecomendadas:
-                            print(habitacion.datosHabitacion())
-                        break
-                    else:
-                        print("No hay hoteles registrados.")
-                        continue
+                if cadenaHoltonInstance.hoteles:
+                    hotel_seleccionado = cadenaHoltonInstance.hoteles[0]  # Aquí deberías seleccionar el hotel adecuado según tus necesidades
+                    habitacionesRecomendadas = hotel_seleccionado.recomendarHabitaciones(cantidadHuespedes, zonaPreferida)
+                    print("Habitaciones recomendadas:")
+                    for habitacion in habitacionesRecomendadas:
+                        print(habitacion.datosHabitacion())
+                    break
+                else:
+                    print("No hay hoteles registrados.")
+                    continue
             
             elif opcion == 4:
                 while True:
                     numeroHabitacion = int(input("Ingrese el número de la habitación: "))
+
                     cantidadHuespedes = int(input("Ingrese la cantidad de huéspedes: "))
+
                     if cantidadHuespedes > 4:
                         print("Error: La cantidad de huéspedes no puede ser mayor a 4.")
                         continue
+
                     elif cantidadHuespedes < 1:
                         print("Error: La cantidad de huéspedes no puede ser menor a 1.")
                         continue
+
                     huespedes = []
                     for i in range(cantidadHuespedes):
                         nombre = input("Ingrese el nombre del huésped: ")
@@ -196,3 +196,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
