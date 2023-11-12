@@ -41,12 +41,16 @@ class Hotel:
     
     def mostrarHabitaciones(self) -> str: #Metodo para mostrar las habitaciones del hotel
         datosHabitaciones = ""
+        datosImpresos = print(f"La ubicación del hotel es: {self.ciudad} \n El nombre de la cadena hotel es: {self.nombre} \n El tipo de hotel es: {self.tipoDeHotel} \n El número de pisos es: {self.numPisos} \n El número de habitaciones por piso es: {self.numHabitacionesPorPiso} \n El precio base es: {self.precioBase}")
+        
         for i in range(self.numPisos):
             for j in range(self.numHabitacionesPorPiso):
                 datosHabitaciones += f"{self.habitacionesH[i][j].datosHabitacion()}" 
                 
             datosHabitaciones += "\n"
-        return datosHabitaciones
+
+        return datosImpresos #Se retorna un string con los datos de las habitaciones
+         
     
     #Historia de usuario # 2: retornes vector con las habitaciones recomendadas
     #    Como Gerente de 

@@ -41,9 +41,11 @@ class CadenaHolton: #Clase que representa la cadena de hoteles Holton
             print(hotel.numPisos)
             print(hotel.numHabitacionesPorPiso)
             print(hotel.precioBase)
-            print(hotel.zonasHotel)
+            print(hotel.habitacionesH)
             print(hotel.mostrarHabitaciones())  
             print("------------------------")
+
+cadenaHoltonInstance = CadenaHolton("Holton")
 
 
    
