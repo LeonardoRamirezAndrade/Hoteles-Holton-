@@ -17,8 +17,52 @@ def mostrarMenuPrincipal():
     print("10. Mostrar Porcentaje de Hombres y Mujeres")
     print("11. Salir")
 
+
 def main():
     cadenaHoltonInstance = CadenaHolton(input("Ingrese el nombre de la cadena de hoteles: "))
+
+    
+    cadenaHoltonInstance.agregarHotel("tradicional", 6, 6, "Bogotá")
+    cadenaHoltonInstance.agregarHotel("tres estrellas", 9, 9, "Medellín")
+    cadenaHoltonInstance.agregarHotel("boutique", 12, 12, "Cali")
+    cadenaHoltonInstance.agregarHotel("cinco estrellas", 15, 15, "Cartagena")
+    cadenaHoltonInstance.agregarHotel("tradicional", 6, 5, "Barranquilla")
+    cadenaHoltonInstance.agregarHotel("tres estrellas", 15, 12, "Manizales")
+    cadenaHoltonInstance.agregarHotel("boutique", 6, 6, "Pereira")
+    cadenaHoltonInstance.agregarHotel("cinco estrellas", 15, 6, "Santa Marta")
+
+    huesped1 = []
+    huesped2 = []
+    huesped3 = []
+    huesped4 = []
+    huesped5 = []
+    huesped6 = []
+    huesped7 = []
+    huesped8 = []
+    huesped9 = []
+    huesped10 = []
+
+    huesped1.append(Huesped("Juan Pérez", 1000001, "1985-03-15", "masculino", "2023-11-01", "2023-11-06"))
+    huesped2.append(Huesped("María González", 1000002, "1990-07-22", "femenino", "2023-11-01", "2023-11-11"))
+    huesped3.append(Huesped("Carlos Rodríguez", 1000003, "1982-11-10", "masculino", "2023-11-01", "2023-11-16"))
+    huesped4.append(Huesped("Ana López", 1000004, "1978-05-03", "femenino", "2023-11-01", "2023-11-21"))
+    huesped5.append(Huesped("Luisa Mendoza", 1000005, "1988-09-18", "femenino", "2023-11-01", "2023-11-26"))
+    huesped6.append(Huesped("Javier Gómez", 1000006, "1975-12-07", "masculino", "2023-11-01", "2023-12-01"))
+    huesped7.append(Huesped("Sofía Ramírez", 1000007, "1983-04-25", "femenino", "2023-11-01", "2023-12-06")) 
+    huesped8.append(Huesped("Pedro Herrera", 1000008, "1989-08-12", "masculino", "2023-11-01", "2023-12-11"))
+    huesped9.append(Huesped("Laura Torres", 1000009, "1980-01-30", "femenino", "2023-11-01", "2023-12-16"))
+    huesped10.append(Huesped("Gabriel Castro", 1000010, "1987-06-14", "masculino", "2023-11-01", "2023-12-21"))
+
+    cadenaHoltonInstance.asignarHabitacion(101, huesped1, cadenaHoltonInstance.hoteles[0])
+    cadenaHoltonInstance.asignarHabitacion(102, huesped2, cadenaHoltonInstance.hoteles[0])
+    cadenaHoltonInstance.asignarHabitacion(203, huesped3, cadenaHoltonInstance.hoteles[1])
+    cadenaHoltonInstance.asignarHabitacion(204, huesped4, cadenaHoltonInstance.hoteles[1])
+    cadenaHoltonInstance.asignarHabitacion(505, huesped5, cadenaHoltonInstance.hoteles[2])
+    cadenaHoltonInstance.asignarHabitacion(506, huesped6, cadenaHoltonInstance.hoteles[3])
+    cadenaHoltonInstance.asignarHabitacion(402, huesped7, cadenaHoltonInstance.hoteles[3])
+    cadenaHoltonInstance.asignarHabitacion(101, huesped8, cadenaHoltonInstance.hoteles[4])
+    cadenaHoltonInstance.asignarHabitacion(101, huesped9, cadenaHoltonInstance.hoteles[5])
+    cadenaHoltonInstance.asignarHabitacion(302, huesped10, cadenaHoltonInstance.hoteles[7])
 
     while True:
         mostrarMenuPrincipal()
