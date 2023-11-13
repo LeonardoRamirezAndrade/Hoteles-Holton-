@@ -13,7 +13,7 @@ class Habitacion:
         self.huespedes = []
 
     def datosHabitacion(self) -> str:
-        datos = f"Habitación {self.numero}: {self.tipo}, {self.numeroHuespedes} huésped(es), Precio: {self.precioNoches} por noche"
+        datos = f"Habitación {self.numeroHabitacion}: Numero de huésped(es): {self.numeroHuespedes}, Precio: {self.precioNoches} por noche"
         
         # Verificar si hay huéspedes en la habitación
         if self.numeroHuespedes > 0:

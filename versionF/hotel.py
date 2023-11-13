@@ -45,18 +45,15 @@ class Hotel:
                     self.habitacionesH[i][j] = Habitacion(estadoHab, numHabitacion, self.zonasHotel[2], 0, precioDeLujo, self.numeroMaximoHuespedes)
 
     
-    def mostrarHabitaciones(self) -> str:
+    def mostrarH(self):
         datosHabitaciones = ""
-        datosImpresos = f"La ubicación del hotel es: {self.ciudad} \n El nombre de la cadena hotel es: {self.nombre} \n El tipo de hotel es: {self.tipoDeHotel} \n El número de pisos es: {self.numPisos} \n El número de habitaciones por piso es: {self.numHabitacionesPorPiso} \n El precio base es: {self.precioBase}\n"
-        
+    
         for i in range(self.numPisos):
             for j in range(self.numHabitacionesPorPiso):
-                datosHabitaciones += f"{self.habitacionesH[i][j].datosHabitacion()}" 
-                
-            datosHabitaciones += "\n"
+                datosHabitaciones += f"{self.habitacionesH[i][j].datosHabitacion()}\n" 
 
-        print(datosImpresos)
         return datosHabitaciones
+    
      #Se retorna un string con los datos de las habitaciones
          
     

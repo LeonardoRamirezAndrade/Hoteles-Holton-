@@ -54,13 +54,6 @@ def main():
                     else:
                         print("Error al agregar el hotel. Verifique los datos ingresados.")
 
-                    if cadenaHoltonInstance.agregarHotel(tipoHotel, numPisos, numHabitacionesPorPiso, ciudad):
-                        print("Hotel agregado con éxito.")
-                        break  # Sale del bucle si el hotel se agregó con éxito
-                    else:
-                        print("Error al agregar el hotel. Verifique los datos ingresados.")
-
-
             elif opcion == 2:
                 cadenaHoltonInstance.mostrarHoteles()
                 if len(cadenaHoltonInstance.hoteles) == 0:

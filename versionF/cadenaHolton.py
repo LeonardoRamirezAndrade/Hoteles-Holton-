@@ -68,8 +68,16 @@ class CadenaHolton: #Clase que representa la cadena de hoteles Holton
     def mostrarHoteles(self):
         for hotel in self.hoteles:
             print(f"Nombre del hotel: {hotel.nombre}, Ciudad: {hotel.ciudad}, Tipo de hotel: {hotel.tipoDeHotel}")
-            hotel.mostrarHabitaciones()
-            print()
+            print(hotel.mostrarH())
+            print("\n")
+    
+    def buscarHotel(self, hotel: str)->int:
+        for i in range(len(self.hoteles)):
+            if self.hoteles[i].nombre == hotel:
+                return i
+            
+        return -1
+
 
     def mostrarHuespedesHabitacion(self, numeroHabitacion: int) -> str:
         datosHuespedes = ""
