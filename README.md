@@ -1,37 +1,63 @@
 # Hoteles Holton
 
-En este proyecto, hemos creado 4 clases esenciales para gestionar un sistema de hoteles. Estas clases son: `CadenaHolton`, `Huésped`, `Habitación` y `Hotel`. A través de estas clases, hemos implementado varias bibliotecas y funciones para su funcionamiento.
+## Descripción del Proyecto
 
-## Clase Cadena Holton
+Hoteles Holton es un sistema de gestión hotelera que permite la creación, administración y consulta de información relacionada con hoteles, habitaciones y huéspedes.
 
-La clase `CadenaHolton` almacena datos importantes relacionados con la cadena de hoteles Holton. Estos datos incluyen:
+## Clases Principales
 
-- Cantidad de habitaciones disponibles.
-- Capacidad de cada hotel.
-- Listado de hoteles disponibles.
-- Tipos de hoteles dentro de la cadena.
-- Precio por noche por persona en cada tipo de hotel.
+### 1. CadenaHolton
 
-### Método Agregar Hotel
+La clase `CadenaHolton` representa la cadena de hoteles y ofrece funciones clave como:
 
-El método `agregarHotel` se utiliza para agregar un nuevo hotel a la cadena Holton. Requiere cuatro parámetros:
+- `agregarHotel(tipoHotel, numPisos, numHabitacionesPorPiso, ciudad)`: Agrega un nuevo hotel a la cadena.
+- `mostrarHoteles()`: Muestra información detallada de todos los hoteles registrados.
+- `asignarHabitacion(numeroHabitacion, huespedes, hotel)`: Asigna una habitación a huéspedes en un hotel específico.
+- `mostrarInforme()`: Muestra un informe general con ganancias totales, número de huéspedes y habitaciones ocupadas.
+- `mostrarZonaMayorAfluencia()`: Indica la zona con mayor afluencia en los hoteles de la cadena.
+- `mostrarPorcentajeHombresYMujeres()`: Calcula y muestra el porcentaje de hombres y mujeres entre los huéspedes.
 
-- Tipo de hotel.
-- Número de pisos.
-- Número de habitaciones por piso.
-- Ciudad.
+### 2. Hotel
 
-### Método Mostrar Hoteles
+La clase `Hotel` representa un hotel individual y ofrece funciones como:
 
-El método `mostrarHoteles` se encarga de mostrar todos los hoteles almacenados en la cadena. Para cada hotel, muestra los siguientes datos:
+- `montoAPagar(numeroHabitacion)`: Calcula el monto a pagar por una habitación.
+- `inhabilitarHabitacion(numeroHabitacion)`: Inhabilita una habitación específica.
+- `mostrarPorcentajeHombresYMujeres()`: Calcula y muestra el porcentaje de hombres y mujeres entre los huéspedes del hotel.
 
-- Ciudad.
-- Nombre.
-- Tipo de hotel.
-- Número de pisos.
-- Número de habitaciones por piso.
-- Precio base por noche por persona.
-- Zonas del hotel.
-- Información detallada de las habitaciones.
+### 3. Habitacion
 
-Este método realiza una iteración de los datos almacenados en `self.hoteles` y muestra la información de cada hotel.
+La clase `Habitacion` representa una habitación en un hotel con información sobre el estado, capacidad y zona.
+
+### 4. Huesped
+
+La clase `Huesped` representa a un huésped con datos como nombre, cédula, fecha de nacimiento, sexo, y fechas de entrada y salida.
+
+## Funcionalidades Principales
+
+- **Registro de Hoteles**: Agrega nuevos hoteles con diferentes tipos y configuraciones.
+- **Asignación de Habitaciones**: Permite asignar habitaciones considerando el tipo de hotel, disponibilidad y preferencia de zona.
+- **Cálculo de Monto a Pagar**: Calcula el monto total a pagar por una habitación según la duración de la estadía y el número de huéspedes.
+- **Inhabilitación de Habitaciones**: Marca habitaciones como no disponibles para su uso.
+- **Informe General**: Proporciona un informe con ganancias totales, número de huéspedes y habitaciones ocupadas.
+- **Recomendación de Habitaciones**: Recomienda habitaciones disponibles según la cantidad de huéspedes y preferencia de zona.
+- **Consulta de Información**: Permite ver información detallada de hoteles, huéspedes y habitaciones.
+
+## Instrucciones de Uso
+
+1. **Inicio del Programa**: Al ejecutar el programa, se solicitará el nombre de la cadena de hoteles.
+2. **Menú Principal**: Se presentará un menú con diversas opciones, como agregar hoteles, mostrar información, asignar habitaciones, entre otros.
+3. **Interacción con el Usuario**: El programa guiará al usuario para ingresar datos relevantes y realizar acciones específicas.
+4. **Visualización de Resultados**: Se mostrarán informes, recomendaciones y detalles de la cadena de hoteles según las acciones realizadas.
+5. **Salir del Programa**: El usuario puede seleccionar la opción para salir del programa cuando lo desee.
+
+## Requisitos y Consideraciones
+
+- Se deben seguir las indicaciones y restricciones proporcionadas por el programa al ingresar datos.
+- Se recomienda ingresar información válida y coherente para obtener resultados precisos.
+- Las fechas deben ingresarse en formato YYYY-MM-DD.
+- Al realizar acciones que afectan la disponibilidad de habitaciones, se actualizará la información en tiempo real.
+
+## Colaboradores principales del Codigo
+
+- Leonardo Ramirez Andrade & Jonathan Vizcaino Macias
