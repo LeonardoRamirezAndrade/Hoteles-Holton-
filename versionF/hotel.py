@@ -204,26 +204,31 @@ class Hotel:
     #huéspedes en nuestros establecimientos.
 
     def mostrarZonaMayorAfluencia(self):
-        zonaMayorAfluencia = ""
-        mayorAfluencia = 0
+        afluenciaBasico = 0
+        afluenciaPreferencial = 0
+        afluenciaDeLujo = 0
         for i in range(self.numPisos):
             for j in range(self.numHabitacionesPorPiso):
                 if(self.habitacionesH[i][j].estado == self.estadoHabitacion[1]):
-                    if(self.habitacionesH[i][j].zona == self.zonasHotel[0]):
-                        mayorAfluencia += 1
-                    elif(self.habitacionesH[i][j].zona == self.zonasHotel[1]):
-                        mayorAfluencia += 1
-                    elif(self.habitacionesH[i][j].zona == self.zonasHotel[2]):
-                        mayorAfluencia += 1
-        if(mayorAfluencia == 0):
-            zonaMayorAfluencia = "No hay habitaciones ocupadas"
-        elif(mayorAfluencia == 1):
-            zonaMayorAfluencia = "La zona con mayor afluencia es la basica"
-        elif(mayorAfluencia == 2):
-            zonaMayorAfluencia = "La zona con mayor afluencia es la preferencial"
-        elif(mayorAfluencia == 3):
-            zonaMayorAfluencia = "La zona con mayor afluencia es la de lujo"
-        return zonaMayorAfluencia
+                        if(self.habitacionesH[i][j].zona == self.zonasHotel[0]):
+                            afluenciaBasico += 1
+                        elif (self.habitacionesH[i][j].zona == self.zonasHotel[1]):
+                            afluenciaPreferencial += 1
+                        elif (self.habitacionesH[i][j].zona == self.zonasHotel[2]):
+                            afluenciaDeLujo += 1
+            
+        if(afluenciaBasico == 0 and afluenciaPreferencial == 0 and afluenciaDeLujo == 0):
+            return "Ninguna. No hay habitaciones ocupadas"
+        else:
+            mayorAfluencia = max(afluenciaBasico, afluenciaPreferencial, afluenciaDeLujo)
+            if(mayorAfluencia == afluenciaBasico):
+                return self.zonasHotel[0]
+            elif(mayorAfluencia == afluenciaPreferencial):
+                return self.zonasHotel[1]
+            elif(mayorAfluencia == afluenciaDeLujo):
+                return self.zonasHotel[2]
+            
+
     #    Historia de usuario # 10: Como 
     #Gerente de Holtons en Colombia, quisiera 
     #conocer el porcentaje histórico de hombres 
@@ -240,11 +245,11 @@ class Hotel:
         for i in range(self.numPisos):
             for j in range(self.numHabitacionesPorPiso):
                 if(self.habitacionesH[i][j].estado == self.estadoHabitacion[1]):
-                    for k in self.habitacionesH[i][j].huespedes:
-                        if(k.sexo == "Masculino"):
-                            totalHombres += 1
-                        elif(k.sexo == "Femenino"):
-                            totalMujeres += 1
+                    k = self.habitacionesH[i][j].huespedes[0]
+                    if(k.sexo == "masculino"):
+                        totalHombres += 1
+                    elif(k.sexo == "femenino"):
+                        totalMujeres += 1
         if(totalHombres != 0):
             porcentajeHombres = (totalHombres/(totalHombres+totalMujeres))*100
         if(totalMujeres != 0):
