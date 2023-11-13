@@ -55,9 +55,11 @@ def main():
                         print("Error al agregar el hotel. Verifique los datos ingresados.")
 
             elif opcion == 2:
-                cadenaHoltonInstance.mostrarHoteles()
+                
                 if len(cadenaHoltonInstance.hoteles) == 0:
                     print("No hay hoteles registrados.")
+                else:
+                    cadenaHoltonInstance.mostrarHoteles()
 
             elif opcion == 3:
                 while True:
@@ -82,11 +84,29 @@ def main():
                         continue
 
                     if cadenaHoltonInstance.hoteles:
-                        hotel_seleccionado = cadenaHoltonInstance.hoteles[0]  # Aquí deberías seleccionar el hotel adecuado según tus necesidades
-                        habitacionesRecomendadas = hotel_seleccionado.recomendarHabitaciones(cantidadHuespedes, zonaPreferida)
-                        print("Habitaciones recomendadas:")
-                        for habitacion in habitacionesRecomendadas:
-                            print(habitacion.datosHabitacion())
+                        print("\nSeleccione el hotel de donde quiere ver recomendaciones:\n")                        
+                        cadenaHoltonInstance.mostrarHotelesSel()
+                        print('Escriba "todos" si quiere ver recomendaciones de todos los hoteles')
+                        hotelElegido = input("\nSeleccione una opcion: ")
+
+                        if hotelElegido!="todos":
+                            hotelElegido = int(hotelElegido)
+                            
+                            hotel_seleccionado = cadenaHoltonInstance.hoteles[hotelElegido-1]  # Aquí deberías seleccionar el hotel adecuado según 
+                            print("----------------------------------------------------------------------------------------------")
+                            print(f"Nombre del hotel: {hotel_seleccionado.nombre}, Ciudad: {hotel_seleccionado.ciudad}, Tipo de hotel: {hotel_seleccionado.tipoDeHotel}")
+                            habitacionesRecomendadas = hotel_seleccionado.recomendarHabitaciones(cantidadHuespedes, zonaPreferida)
+                            print("Habitaciones recomendadas:")
+                            for habitacion in habitacionesRecomendadas:
+                                print(habitacion.datosHabitacion())
+                        else:
+                            for hotel in cadenaHoltonInstance.hoteles:
+                                print("----------------------------------------------------------------------------------------------")
+                                print(f"Nombre del hotel: {hotel.nombre}, Ciudad: {hotel.ciudad}, Tipo de hotel: {hotel.tipoDeHotel}")
+                                habitacionesRecomendadas = hotel.recomendarHabitaciones(cantidadHuespedes, zonaPreferida)
+                                for habitacion in habitacionesRecomendadas:
+                                    print(habitacion.datosHabitacion())
+
                         break
                     else:
                         print("No hay hoteles registrados.")
@@ -96,6 +116,12 @@ def main():
                 nuevaHabitacion = True
                 while nuevaHabitacion:
                     try:
+                        print("\nSeleccione el hotel de donde quiere asignar una habitación\n")
+                        cadenaHoltonInstance.mostrarHotelesSel()
+                        hotelElegidoPosicion = int(input("\nSeleccione una opcion: "))
+                        
+                        hotelE = cadenaHoltonInstance.hoteles[hotelElegidoPosicion-1]
+
                         numeroHabitacion = int(input("Ingrese el número de la habitación: "))
                         cantidadHuespedes = int(input("Ingrese la cantidad de huéspedes: "))
 
@@ -131,8 +157,9 @@ def main():
                             fechaSalida = input(f"Ingrese la fecha de salida del huésped {i + 1} (Formato YYYY-MM-DD): ")
 
                             huespedes.append(Huesped(nombreCompleto, cedula, fechaNacimiento, sexo, fechaEntrada, fechaSalida))
-
-                        cadenaHoltonInstance.asignarHabitacion(numeroHabitacion, huespedes)
+                        
+                        #AQUIII DEBESSSS MEJORAAAARRRRRRRRRRRRRRRRRRRRRRRRRRRR
+                        cadenaHoltonInstance.asignarHabitacion(numeroHabitacion, huespedes, hotelE )
 
                         while True:
                             print("¿Desea agregar otra habitación?")
@@ -158,13 +185,20 @@ def main():
                     except ValueError:
                         print("Error: Por favor, ingrese un número válido.")
             elif opcion == 5:
+                print("\nSeleccione el hotel de donde quiere ver información de un usuario\n")
+                cadenaHoltonInstance.mostrarHotelesSel()
+                hotelElegidoPosicion = int(input("\nSeleccione una opcion: "))
+
                 numeroHabitacion = int(input("Ingrese el número de la habitación: "))
                 print(f"Huéspedes de la habitación {numeroHabitacion}:")
-                print(cadenaHoltonInstance.mostrarHuespedesHabitacion(numeroHabitacion))                
+                print(cadenaHoltonInstance.mostrarHuespedesHabitacion(numeroHabitacion, hotelElegidoPosicion-1))                
 
             elif opcion == 6:
+                print("\nSeleccione el hotel de donde quiere ver información de un usuario\n")
+                cadenaHoltonInstance.mostrarHotelesSel()
+                hotelElegidoPosicionA = int(input("\nSeleccione una opcion: "))
                 numeroHabitacion = int(input("Ingrese el número de la habitación: "))
-                print(f"Monto a pagar por la habitación {numeroHabitacion}: ${cadenaHoltonInstance.montoAPagar(numeroHabitacion)}")
+                print(f"Monto a pagar por la habitación {numeroHabitacion}: ${cadenaHoltonInstance.hoteles[hotelElegidoPosicionA-1].montoAPagar(numeroHabitacion)}")
 
             elif opcion == 7:
                 numeroHabitacion = int(input("Ingrese el número de la habitación: "))

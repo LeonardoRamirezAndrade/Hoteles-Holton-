@@ -53,10 +53,11 @@ class CadenaHolton: #Clase que representa la cadena de hoteles Holton
     #tarifas de cobro de la empresa
     #    
     #  
-    def asignarHabitacion(self, numeroHabitacion, huespedes):
-        for i in range(self.numPisos):
-            for j in range(self.numHabitacionesPorPiso):
-                habitacion = self.habitacionesH[i][j]
+    def asignarHabitacion(self, numeroHabitacion: int, huespedes:[Huesped], hotel: Hotel):
+
+        for i in range(hotel.numPisos):
+            for j in range(hotel.numHabitacionesPorPiso):
+                habitacion = hotel.habitacionesH[i][j]
                 if habitacion.numeroHabitacion == numeroHabitacion and habitacion.estado == 'libre':
                     habitacion.estado = 'ocupada'
                     habitacion.huespedes = huespedes
@@ -79,23 +80,19 @@ class CadenaHolton: #Clase que representa la cadena de hoteles Holton
         return -1
 
 
-    def mostrarHuespedesHabitacion(self, numeroHabitacion: int) -> str:
+    def mostrarHuespedesHabitacion(self, numeroHabitacion: int, posicionHotel: int) -> str:
         datosHuespedes = ""
         habitacionEncontrada = None
-        hotelEncontrado = None
 
+        hotelE = self.hoteles[posicionHotel]
         # Buscar la habitación en la lista de hoteles
-        for hotel in self.hoteles:
-            for i in range(hotel.numPisos):
-                for j in range(hotel.numHabitacionesPorPiso):
-                    habitacion = hotel.habitacionesH[i][j]
-                    if habitacion.numeroHabitacion == numeroHabitacion and habitacion.estado == "ocupada":
+        if hotelE is not None:
+            for i in range(hotelE.numPisos):
+                for j in range(hotelE.numHabitacionesPorPiso):
+                    habitacion = hotelE.habitacionesH[i][j]
+                    if habitacion.numeroHabitacion == numeroHabitacion:
                         habitacionEncontrada = habitacion
-                        hotelEncontrado = hotel
                         break
-                if habitacionEncontrada:
-                    break
-
         if habitacionEncontrada is not None:
             datosHuespedes = habitacionEncontrada.mostrarDatosHuespedes()
         else:
@@ -103,3 +100,10 @@ class CadenaHolton: #Clase que representa la cadena de hoteles Holton
 
         return datosHuespedes
 
+    def mostrarHotelesSel(self):
+        
+        for i in range(len(self.hoteles)):
+            print(f"{i + 1}. {self.hoteles[i].nombre}") 
+        
+
+   

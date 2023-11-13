@@ -4,6 +4,7 @@ import math #Importamos la libreria math para poder usar el metodo ceil que redo
 import numpy as np
 from huesped import *
 from habitacion import *
+from datetime import datetime
 
 class Hotel:
 
@@ -113,6 +114,28 @@ class Hotel:
     #la cantidad se determine según las reglas y 
     #tarifas de cobro de la empresa
 
+    #2004-08-01
+
+    
+
+    def cuantasNoches(self, habitacion: Habitacion) -> int:
+        if len(habitacion.huespedes) > 0:
+            huesped = habitacion.huespedes[0]
+
+            try:
+                fechaEntrada = datetime.strptime(huesped.fechaEntrada, "%Y-%m-%d")
+                fechaSalida = datetime.strptime(huesped.fechaSalida, "%Y-%m-%d")
+            except ValueError:
+                print("Error en el formato de las fechas.")
+                return 0
+
+            # Calcula la diferencia en días
+            diferencia = fechaSalida - fechaEntrada
+            return diferencia.days
+        else:
+            return 0
+
+
     def montoAPagar(self, numeroHabitacion:int) -> float:
         monto = 0
         habitacionEncontrada = None
@@ -120,10 +143,9 @@ class Hotel:
             for j in range(self.numHabitacionesPorPiso):
                 if(self.habitacionesH[i][j].numeroHabitacion == numeroHabitacion):
                     habitacionEncontrada = self.habitacionesH[i][j]
-                    numeroHuespedes = len(habitacionEncontrada.huespedes)
-
-        if(habitacionEncontrada != None and numeroHuespedes > 0):
-            monto = habitacionEncontrada.precioNoches * numeroHuespedes
+                    break
+        numeroHuespedes = len(habitacionEncontrada.huespedes)
+        monto = self.cuantasNoches(habitacionEncontrada) * habitacionEncontrada.precioNoches * numeroHuespedes
         return monto
     
     #    Historia de usuario # 6: Como Gerente de 
@@ -232,4 +254,6 @@ class Hotel:
         if(totalMujeres != 0):
             porcentajeMujeres = (totalMujeres/(totalHombres+totalMujeres))*100
         return porcentajeHombres, porcentajeMujeres
+    
+
     
