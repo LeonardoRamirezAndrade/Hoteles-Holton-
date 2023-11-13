@@ -60,4 +60,4 @@ La clase `Huesped` representa a un huésped con datos como nombre, cédula, fech
 
 ## Colaboradores principales del Codigo
 
-- Leonardo Ramirez Andrade & Jonathan Vizcaino Macias
+- Leonardo Ramirez Andrade
