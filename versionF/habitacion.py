@@ -1,3 +1,7 @@
+#habitacion.py
+from datetime import datetime
+
+
 class Habitacion:
     def __init__(self, estado: str, numeroHabitacion: int, zona: str, numeroHuespedes: int, precioNoches: int, numerioMaximoHuespedes: int):
         self.estado = estado
@@ -9,7 +13,15 @@ class Habitacion:
         self.huespedes = []
 
     def datosHabitacion(self) -> str:
-        return f"{self.numeroHabitacion} - {self.precioNoches} - {self.estado} / "
+        datos = f"Habitación {self.numero}: {self.tipo}, {self.numeroHuespedes} huésped(es), Precio: {self.precioNoches} por noche"
+        
+        # Verificar si hay huéspedes en la habitación
+        if self.numeroHuespedes > 0:
+            datos += f"\nHuéspedes: {', '.join(self.huespedes)}" # El Join es para unir los elementos de una lista
+            datos += f"\nFecha de llegada: {self.fechaLlegada}"
+
+        return datos
+
 
     def mostrarDatosHuespedes(self) -> str:
         datosHuespedes = ""

@@ -9,6 +9,8 @@ class CadenaHolton: #Clase que representa la cadena de hoteles Holton
         self.tiposDeHotel = (('tradicional', 100000), ('tres estrellas', 200000), ('boutique', 300000),
                              ('cinco estrellas', 400000))  # Tipo de hotel y precio base
         self.numerosDePisos = (6, 9, 12, 15)  # Numero de pisos permitidos
+        self.numPisos = 0
+        self.numHabitacionesPorPiso = 0
         self.numMaxPersonasPorHabitacion = 4
         self.hoteles = []  # Lista de hoteles
             
@@ -49,35 +51,47 @@ class CadenaHolton: #Clase que representa la cadena de hoteles Holton
     #pagar al momento de su salida, asegurando que 
     #la cantidad se determine según las reglas y 
     #tarifas de cobro de la empresa
-    #     
-    def asignarHabitacion(self, numeroHabitacion: int, huespedesPasados: list[Huesped]):
-        habitacionEncontrada = None
+    #    
+    #  
+    def asignarHabitacion(self, numeroHabitacion, huespedes):
         for i in range(self.numPisos):
             for j in range(self.numHabitacionesPorPiso):
-                if (
-                    self.habitacionesH[i][j].numeroHabitacion == numeroHabitacion
-                    and self.habitacionesH[i][j].estado == self.estadoHabitacion[0]
-                ):
-                    habitacionEncontrada = self.habitacionesH[i][j]
-                    break
-        if habitacionEncontrada != None:
-            if len(huespedesPasados) <= self.numeroMaximoHuespedes and len(huespedesPasados) > 0:
-                habitacionEncontrada.huespedes = huespedesPasados
-                habitacionEncontrada.estado = self.estadoHabitacion[1]
-            else:
-                print("No se puede asignar la habitacion, la cantidad de huespedes es incorrecta")
-        else:
-            print("No se encontro la habitacion")
+                habitacion = self.habitacionesH[i][j]
+                if habitacion.numeroHabitacion == numeroHabitacion and habitacion.estado == 'libre':
+                    habitacion.estado = 'ocupada'
+                    habitacion.huespedes = huespedes
+                    return True  # Habitación asignada exitosamente
+
+        return False
+    
     
     def mostrarHoteles(self):
-        if len(self.hoteles) == 0:
-            print("No hay hoteles registrados.")
+        for hotel in self.hoteles:
+            print(f"Nombre del hotel: {hotel.nombre}, Ciudad: {hotel.ciudad}, Tipo de hotel: {hotel.tipoDeHotel}")
+            hotel.mostrarHabitaciones()
+            print()
+
+    def mostrarHuespedesHabitacion(self, numeroHabitacion: int) -> str:
+        datosHuespedes = ""
+        habitacionEncontrada = None
+        hotelEncontrado = None
+
+        # Buscar la habitación en la lista de hoteles
+        for hotel in self.hoteles:
+            for i in range(hotel.numPisos):
+                for j in range(hotel.numHabitacionesPorPiso):
+                    habitacion = hotel.habitacionesH[i][j]
+                    if habitacion.numeroHabitacion == numeroHabitacion and habitacion.estado == "ocupada":
+                        habitacionEncontrada = habitacion
+                        hotelEncontrado = hotel
+                        break
+                if habitacionEncontrada:
+                    break
+
+        if habitacionEncontrada is not None:
+            datosHuespedes = habitacionEncontrada.mostrarDatosHuespedes()
         else:
-            for hotel in self.hoteles:
-                print("------------------------")
-                print(hotel.datosHotel())
-                print("------------------------")
+            datosHuespedes = "No se encontró la habitación"
 
-
-cadenaHoltonInstance = CadenaHolton("Holton")
+        return datosHuespedes
 

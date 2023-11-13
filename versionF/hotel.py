@@ -20,6 +20,9 @@ class Hotel:
         self.ganaciasTotalesTemporales = 0
         self.numeroMaximoHuespedes = numeroMaximoHuespedes
         self.llenarhabitaciones()
+        self.habitacionesOcupadas = set() #Se crea un set para guardar las habitaciones ocupadas, un set es un conjunto de datos que no se pueden repetir
+
+
 
 
     def llenarhabitaciones(self): #Metodo para llenar las habitaciones del hotel
@@ -42,9 +45,9 @@ class Hotel:
                     self.habitacionesH[i][j] = Habitacion(estadoHab, numHabitacion, self.zonasHotel[2], 0, precioDeLujo, self.numeroMaximoHuespedes)
 
     
-    def mostrarHabitaciones(self) -> str: #Metodo para mostrar las habitaciones del hotel
+    def mostrarHabitaciones(self) -> str:
         datosHabitaciones = ""
-        datosImpresos = print(f"La ubicación del hotel es: {self.ciudad} \n El nombre de la cadena hotel es: {self.nombre} \n El tipo de hotel es: {self.tipoDeHotel} \n El número de pisos es: {self.numPisos} \n El número de habitaciones por piso es: {self.numHabitacionesPorPiso} \n El precio base es: {self.precioBase}")
+        datosImpresos = f"La ubicación del hotel es: {self.ciudad} \n El nombre de la cadena hotel es: {self.nombre} \n El tipo de hotel es: {self.tipoDeHotel} \n El número de pisos es: {self.numPisos} \n El número de habitaciones por piso es: {self.numHabitacionesPorPiso} \n El precio base es: {self.precioBase}\n"
         
         for i in range(self.numPisos):
             for j in range(self.numHabitacionesPorPiso):
@@ -52,7 +55,8 @@ class Hotel:
                 
             datosHabitaciones += "\n"
 
-        return datosImpresos, datosHabitaciones
+        print(datosImpresos)
+        return datosHabitaciones
      #Se retorna un string con los datos de las habitaciones
          
     
@@ -64,23 +68,35 @@ class Hotel:
     #la cantidad se determine según las reglas y 
     #tarifas de cobro de la empresa
 
-    def recomendarHabitaciones(self, cantidadHuespedes:int, zonaPreferida: str): #Metodo para recomendar habitaciones
-        cantidadH = -1;
-        if(cantidadHuespedes>0 and cantidadHuespedes <= self.numeroMaximoHuespedes):
-            cantidadH = cantidadHuespedes
-        zonaPref = ""
-        if(zonaPreferida in self.zonasHotel):
-            zonaPref = zonaPreferida
-
+    def recomendarHabitaciones(self, cantidadHuespedes, zonaPreferida):
         habitacionesRecomendadas = []
-        if(cantidadH != -1 and zonaPref != ""): #Si los datos son validos se recomiendan las habitaciones este 
-            for i in range(self.numPisos):
-                for j in range(self.numHabitacionesPorPiso):
-                    if(self.habitacionesH[i][j].zona == zonaPref and self.habitacionesH[i][j].estado == self.estadoHabitacion[0]):
-                        habitacionesRecomendadas.append(self.habitacionesH[i][j])
-        return habitacionesRecomendadas
 
-  
+        for i in range(self.numPisos):
+            for j in range(self.numHabitacionesPorPiso):
+                habitacion = self.habitacionesH[i][j]
+                if habitacion.estado == 'libre':
+                    if cantidadHuespedes <= 2 or (cantidadHuespedes > 2 and habitacion.zona == zonaPreferida):
+                        habitacionesRecomendadas.append(habitacion)
+
+        # Filtrar las habitaciones recomendadas si la zona preferida es "de lujo"
+        if zonaPreferida == "de lujo":
+            habitacionesRecomendadas = [hab for hab in habitacionesRecomendadas if hab.zona == zonaPreferida]
+        elif zonaPreferida == "preferencial":
+            habitacionesRecomendadas = [hab for hab in habitacionesRecomendadas if hab.zona == zonaPreferida]
+        elif zonaPreferida == "basica":
+            habitacionesRecomendadas = [hab for hab in habitacionesRecomendadas if hab.zona == zonaPreferida]
+        else:
+            habitacionesRecomendadas = []
+
+        return habitacionesRecomendadas
+    
+    def obtenerZonaHabitacion(self, numeroHabitacion: int) -> str:
+    # Obtener la zona de una habitación específica
+        for i in range(self.numPisos):
+            for j in range(self.numHabitacionesPorPiso):
+                if self.habitacionesH[i][j].numeroHabitacion == numeroHabitacion:
+                    return self.habitacionesH[i][j].zona
+        return ""
 
 
 
@@ -91,18 +107,6 @@ class Hotel:
     #la cantidad se determine según las reglas y 
     #tarifas de cobro de la empresa
     #crea un metodo igual que datosHabitacion que está en la clase habitación
-
-    def mostrarHuespedes(self, numeroHabitacion:int) -> str:
-        datosHuespedes = ""
-        habitacionEncontrada = None
-        for i in range(self.numPisos):
-            for j in range(self.numHabitacionesPorPiso):
-                if(self.habitacionesH[i][j].numeroHabitacion == numeroHabitacion):
-                    habitacionEncontrada = self.habitacionesH[i][j]
-        if(habitacionEncontrada != None):
-            datosHuespedes = habitacionEncontrada.mostrarDatosHuespedes()
-        return datosHuespedes
-
 
     #Historia de usuario # 5:
     #   Como Gerente de 
@@ -151,7 +155,7 @@ class Hotel:
     #en condiciones óptimas, para asegurar que no 
     #se asignen a huéspedes
 
-    def inhabilitarHabitaciones(self, numeroHabitacion:int):
+    def inhabilitarHabitacion(self, numeroHabitacion:int):
         habitacionEncontrada = None
         for i in range(self.numPisos):
             for j in range(self.numHabitacionesPorPiso):
@@ -161,8 +165,7 @@ class Hotel:
         if(habitacionEncontrada != None):
             habitacionEncontrada.estado = self.estadoHabitacion[2]
         else:
-            print("No se encontro la habitación")
-    
+            print("No se encontró la habitación")
     #    Historia de usuario # 8: Como Gerente 
     #de Holtons en Colombia, deseo recibir un 
     #informe detallado que muestre los ingresos 
