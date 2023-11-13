@@ -100,6 +100,14 @@ class CadenaHolton: #Clase que representa la cadena de hoteles Holton
 
         return datosHuespedes
 
+    def mostrarInforme(self):
+        numeroHabitacionesOcupadas += self.hoteles[0:len(self.hoteles-1)].numeroHabitacionesOcupadas
+        numeroHuespedesAtendidos += self.hoteles[0:len(self.hoteles-1)].numeroHuespedesAtendidos
+        ganaciasTotales += self.hoteles[0:len(self.hoteles-1)].gananciasTotales
+        print("Ganancias totales: ", ganaciasTotales)
+        print("Numero de huespedes atendidos: ", numeroHuespedesAtendidos)
+        print("Numero de habitaciones ocupadas: ", numeroHabitacionesOcupadas)
+
     def mostrarHotelesSel(self):
         
         for i in range(len(self.hoteles)):

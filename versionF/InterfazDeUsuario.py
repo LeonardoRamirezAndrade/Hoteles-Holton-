@@ -11,12 +11,11 @@ def mostrarMenuPrincipal():
     print("4. Asignar Habitación")
     print("5. Mostrar Huéspedes de una Habitación")
     print("6. Calcular Monto a Pagar")
-    print("7. Desocupar Habitación")
-    print("8. Inhabilitar Habitación")
-    print("9. Mostrar Informe")
-    print("10. Mostrar Zona con Mayor Afluencia")
-    print("11. Mostrar Porcentaje de Hombres y Mujeres")
-    print("12. Salir")
+    print("7. Inhabilitar Habitación")
+    print("8. Mostrar Informe")
+    print("9. Mostrar Zona con Mayor Afluencia")
+    print("10. Mostrar Porcentaje de Hombres y Mujeres")
+    print("11. Salir")
 
 def main():
     cadenaHoltonInstance = CadenaHolton(input("Ingrese el nombre de la cadena de hoteles: "))
@@ -25,7 +24,7 @@ def main():
         mostrarMenuPrincipal()
 
         try:
-            opcion = int(input("Por favor, elija una opción (1-12): "))
+            opcion = int(input("Por favor, elija una opción (1-11): "))
 
             if opcion == 1:
                 while True:
@@ -158,7 +157,6 @@ def main():
 
                             huespedes.append(Huesped(nombreCompleto, cedula, fechaNacimiento, sexo, fechaEntrada, fechaSalida))
                         
-                        #AQUIII DEBESSSS MEJORAAAARRRRRRRRRRRRRRRRRRRRRRRRRRRR
                         cadenaHoltonInstance.asignarHabitacion(numeroHabitacion, huespedes, hotelE )
 
                         while True:
@@ -201,32 +199,30 @@ def main():
                 print(f"Monto a pagar por la habitación {numeroHabitacion}: ${cadenaHoltonInstance.hoteles[hotelElegidoPosicionA-1].montoAPagar(numeroHabitacion)}")
 
             elif opcion == 7:
+                print("\nSeleccione el hotel de donde quiere inhabilitar una habitación\n")
+                cadenaHoltonInstance.mostrarHotelesSel()
+                hotelElegidoPosicion = int(input("\nSeleccione una opcion: "))
+                
                 numeroHabitacion = int(input("Ingrese el número de la habitación: "))
-                if cadenaHoltonInstance.desocuparHabitacion(numeroHabitacion):
-                    print("Habitación desocupada con éxito.")
-                else:
-                    print("Error al desocupar la habitación. Verifique los datos ingresados.")
-            elif opcion == 8:
-                numeroHabitacion = int(input("Ingrese el número de la habitación: "))
-                if cadenaHoltonInstance.inhabilitarHabitacion(numeroHabitacion):
+                if cadenaHoltonInstance.hoteles[hotelElegidoPosicion-1].inhabilitarHabitacion(numeroHabitacion):
                     print("Habitación inhabilitada con éxito.")
                 else:
                     print("Error al inhabilitar la habitación. Verifique los datos ingresados.")
 
-            elif opcion == 9:
+            elif opcion == 8:
                 if cadenaHoltonInstance.hoteles == []:
                     print("No hay hoteles registrados.")
                     continue
                 cadenaHoltonInstance.mostrarInforme()
 
-            elif opcion == 10:
+            elif opcion == 9:
                 if cadenaHoltonInstance.hoteles == []:
                     print("No hay hoteles registrados.")
                     continue
                 print(f"Zona con mayor afluencia: {cadenaHoltonInstance.mostrarZonaMayorAfluencia()}")
 
 
-            elif opcion == 11:
+            elif opcion == 10:
                 if cadenaHoltonInstance.hoteles == []:
                     print("No hay hoteles registrados.")
                     continue
@@ -239,7 +235,7 @@ def main():
                 print(f"Porcentaje de hombres: {cadenaHoltonInstance.mostrarPorcentajeHombres()}%")
                 print(f"Porcentaje de mujeres: {cadenaHoltonInstance.mostrarPorcentajeMujeres()}%")
 
-            elif opcion == 12:
+            elif opcion == 11:
                 print("Gracias por usar la aplicación. ¡Hasta luego!")
                 break
 

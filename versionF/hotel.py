@@ -18,13 +18,21 @@ class Hotel:
         self.precioBase = precioBase
         self.zonasHotel = ('basica', 'preferencial', 'de lujo')
         self.estadoHabitacion = ('libre', 'ocupada', 'no habilitada para uso')
-        self.ganaciasTotalesTemporales = 0
         self.numeroMaximoHuespedes = numeroMaximoHuespedes
         self.llenarhabitaciones()
+        self.numeroHuespedesAtendidos = 0
+        self.ganaciasTotales = 0
+        self.numeroHabitacionesOcupadas = self.numHOcupadas()
         self.habitacionesOcupadas = set() #Se crea un set para guardar las habitaciones ocupadas, un set es un conjunto de datos que no se pueden repetir
 
 
-
+    def numHOcupadas(self): #Metodo para calcular el numero de habitaciones ocupadas
+        numHabitacionesOcupadas = 0
+        for i in range(self.numPisos):
+            for j in range(self.numHabitacionesPorPiso):
+                if(self.habitacionesH[i][j].estado == self.estadoHabitacion[1]):
+                    numHabitacionesOcupadas += 1
+        return numHabitacionesOcupadas
 
     def llenarhabitaciones(self): #Metodo para llenar las habitaciones del hotel
         preferencial = math.ceil(self.numPisos*(1/3))  #Esto hace que la preferencial ocupe el 33.33% de los pisos
@@ -146,6 +154,10 @@ class Hotel:
                     break
         numeroHuespedes = len(habitacionEncontrada.huespedes)
         monto = self.cuantasNoches(habitacionEncontrada) * habitacionEncontrada.precioNoches * numeroHuespedes
+        habitacionEncontrada.estado = self.estadoHabitacion[0] #Aquí se completa la historia de usuario # 6
+        habitacionEncontrada.huespedes = [] #Aquí se completa la historia de usuario # 6
+        self.numeroHuespedesAtendidos += numeroHuespedes
+        self.ganaciasTotales += monto
         return monto
     
     #    Historia de usuario # 6: Como Gerente de 
@@ -155,18 +167,7 @@ class Hotel:
     #poder asignarlas a nuevos huéspedes que 
     #lleguen a un hotel.
 
-    def desocuparHabitacion(self, numeroHabitacion:int):
-        habitacionEncontrada = None
-        for i in range(self.numPisos):
-            for j in range(self.numHabitacionesPorPiso):
-                if(self.habitacionesH[i][j].numeroHabitacion == numeroHabitacion):
-                    habitacionEncontrada = self.habitacionesH[i][j]
-                    break
-        if(habitacionEncontrada != None):
-            habitacionEncontrada.huespedes = []
-            habitacionEncontrada.estado = self.estadoHabitacion[0]
-        else:
-            print("No se encontro la habitación")
+        
     
     # Historia de usuario # 7: Como Gerente de 
     #Holtons en Colombia, deseo establecer como no 
@@ -194,10 +195,6 @@ class Hotel:
     #cumplimiento de nuestras metas 
     #empresariales.
 
-    def mostrarInforme(self):
-        print("Ingresos totales: ", self.ganaciasTotalesTemporales)
-        print("Numero de huespedes atendidos: ", self.numeroHuespedesAtendidos)
-        print("Numero de habitaciones ocupadas: ", self.numeroHabitacionesOcupadas)
 
     #Historia de usuario # 9: Como Gerente 
     #de Holtons en Colombia, quisiera conocer 
