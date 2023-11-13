@@ -22,7 +22,6 @@ class Hotel:
         self.llenarhabitaciones()
         self.numeroHuespedesAtendidos = 0
         self.ganaciasTotales = 0
-        self.numeroHabitacionesOcupadas = self.numHOcupadas()
         self.habitacionesOcupadas = set() #Se crea un set para guardar las habitaciones ocupadas, un set es un conjunto de datos que no se pueden repetir
 
 

@@ -213,6 +213,7 @@ def main():
                 if cadenaHoltonInstance.hoteles == []:
                     print("No hay hoteles registrados.")
                     continue
+                
                 cadenaHoltonInstance.mostrarInforme()
 
             elif opcion == 9:
