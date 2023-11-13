@@ -22,7 +22,7 @@ def main():
     cadenaHoltonInstance = CadenaHolton(input("Ingrese el nombre de la cadena de hoteles: "))
 
     
-    cadenaHoltonInstance.agregarHotel("tradicional", 6, 6, "Bogotá")
+    cadenaHoltonInstance.agregarHotel("tradicional", 6, 6, "Bogotá") #Estos son ejemplos ya construidos para que no se tenga que ingresar todo de nuevo y ver que todo funciona
     cadenaHoltonInstance.agregarHotel("tres estrellas", 9, 9, "Medellín")
     cadenaHoltonInstance.agregarHotel("boutique", 12, 12, "Cali")
     cadenaHoltonInstance.agregarHotel("cinco estrellas", 15, 15, "Cartagena")
@@ -53,13 +53,13 @@ def main():
     huesped9.append(Huesped("Laura Torres", 1000009, "1980-01-30", "femenino", "2023-11-01", "2023-12-16"))
     huesped10.append(Huesped("Gabriel Castro", 1000010, "1987-06-14", "masculino", "2023-11-01", "2023-12-21"))
 
-    cadenaHoltonInstance.asignarHabitacion(101, huesped1, cadenaHoltonInstance.hoteles[0])
+    cadenaHoltonInstance.asignarHabitacion(101, huesped1, cadenaHoltonInstance.hoteles[0]) #la razon por la que se coloca cero es porque en la lista de hoteles se empieza a contar desde 0
     cadenaHoltonInstance.asignarHabitacion(102, huesped2, cadenaHoltonInstance.hoteles[0])
     cadenaHoltonInstance.asignarHabitacion(203, huesped3, cadenaHoltonInstance.hoteles[1])
     cadenaHoltonInstance.asignarHabitacion(204, huesped4, cadenaHoltonInstance.hoteles[1])
     cadenaHoltonInstance.asignarHabitacion(505, huesped5, cadenaHoltonInstance.hoteles[2])
     cadenaHoltonInstance.asignarHabitacion(506, huesped6, cadenaHoltonInstance.hoteles[3])
-    cadenaHoltonInstance.asignarHabitacion(402, huesped7, cadenaHoltonInstance.hoteles[3])
+    cadenaHoltonInstance.asignarHabitacion(402, huesped7, cadenaHoltonInstance.hoteles[3]) 
     cadenaHoltonInstance.asignarHabitacion(101, huesped8, cadenaHoltonInstance.hoteles[4])
     cadenaHoltonInstance.asignarHabitacion(101, huesped9, cadenaHoltonInstance.hoteles[5])
     cadenaHoltonInstance.asignarHabitacion(302, huesped10, cadenaHoltonInstance.hoteles[7])
@@ -102,7 +102,7 @@ def main():
                 if len(cadenaHoltonInstance.hoteles) == 0:
                     print("No hay hoteles registrados.")
                 else:
-                    cadenaHoltonInstance.mostrarHoteles()
+                    cadenaHoltonInstance.mostrarHoteles() #Se encuentra en cadenaHolton.py
 
             elif opcion == 3:
                 while True:
@@ -135,7 +135,7 @@ def main():
                         if hotelElegido!="todos":
                             hotelElegido = int(hotelElegido)
                             
-                            hotel_seleccionado = cadenaHoltonInstance.hoteles[hotelElegido-1]  # Aquí deberías seleccionar el hotel adecuado según 
+                            hotel_seleccionado = cadenaHoltonInstance.hoteles[hotelElegido-1]  # Se resta 1 porque la lista de hoteles empieza en 0 y el usuario ingresa un número que empieza en 1
                             print("----------------------------------------------------------------------------------------------")
                             print(f"Nombre del hotel: {hotel_seleccionado.nombre}, Ciudad: {hotel_seleccionado.ciudad}, Tipo de hotel: {hotel_seleccionado.tipoDeHotel}")
                             habitacionesRecomendadas = hotel_seleccionado.recomendarHabitaciones(cantidadHuespedes, zonaPreferida)
@@ -226,7 +226,7 @@ def main():
 
                     except ValueError:
                         print("Error: Por favor, ingrese un número válido.")
-            elif opcion == 5:
+            elif opcion == 5: #historia de usuario 4
                 print("\nSeleccione el hotel de donde quiere ver información de un usuario\n")
                 cadenaHoltonInstance.mostrarHotelesSel()
                 hotelElegidoPosicion = int(input("\nSeleccione una opcion: "))

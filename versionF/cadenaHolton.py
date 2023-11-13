@@ -99,6 +99,8 @@ class CadenaHolton: #Clase que representa la cadena de hoteles Holton
             datosHuespedes = "No se encontró la habitación"
 
         return datosHuespedes
+    
+    #    Historia de usuario # 8: Como Gerente     #de Holtons en Colombia, deseo recibir un     #informe detallado que muestre los ingresos     #obtenidos por la cadena, el número de     #huéspedes atendidos y la cantidad de     #habitaciones ocupadas, para evaluar el     #cumplimiento de nuestras metas     #empresariales.
 
     def mostrarInforme(self):
         numeroHOcupadas = 0

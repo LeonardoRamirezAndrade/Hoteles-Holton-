@@ -105,25 +105,7 @@ class Hotel:
 
 
 
-    #Historia de usuario # 4: Como Gerente de 
-    #Holtons en Colombia, quiero calcular el monto 
-    #que los huéspedes de una habitación deben 
-    #pagar al momento de su salida, asegurando que 
-    #la cantidad se determine según las reglas y 
-    #tarifas de cobro de la empresa
-    #crea un metodo igual que datosHabitacion que está en la clase habitación
-
-    #Historia de usuario # 5:
-    #   Como Gerente de 
-    #Holtons en Colombia, quiero calcular el monto 
-    #que los huéspedes de una habitación deben 
-    #pagar al momento de su salida, asegurando que 
-    #la cantidad se determine según las reglas y 
-    #tarifas de cobro de la empresa
-
-    #2004-08-01
-
-    
+    #Historia de usuario # 5:     Como Gerente de    Holtons en Colombia, quiero calcular el monto     que los huéspedes de una habitación deben     pagar al momento de su salida, asegurando que     la cantidad se determine según las reglas y     tarifas de cobro de la empresa
 
     def cuantasNoches(self, habitacion: Habitacion) -> int:
         if len(habitacion.huespedes) > 0:
@@ -142,6 +124,7 @@ class Hotel:
         else:
             return 0
 
+    #    Historia de usuario # 6: Como Gerente de     #Holtons en Colombia, quiero que las     #habitaciones de huéspedes que acaban de     #realizar su salida queden disponibles, para así     #poder asignarlas a nuevos huéspedes que     #lleguen a un hotel.
 
     def montoAPagar(self, numeroHabitacion:int) -> float:
         monto = 0
@@ -152,21 +135,13 @@ class Hotel:
                     habitacionEncontrada = self.habitacionesH[i][j]
                     break
         numeroHuespedes = len(habitacionEncontrada.huespedes)
-        monto = self.cuantasNoches(habitacionEncontrada) * habitacionEncontrada.precioNoches * numeroHuespedes
+        monto = self.cuantasNoches(habitacionEncontrada) * habitacionEncontrada.precioNoches * numeroHuespedes #Aquí se completa la historia de usuario # 5
         habitacionEncontrada.estado = self.estadoHabitacion[0] #Aquí se completa la historia de usuario # 6
         habitacionEncontrada.huespedes = [] #Aquí se completa la historia de usuario # 6
         self.numeroHuespedesAtendidos += numeroHuespedes
         self.ganaciasTotales += monto
         return monto
-    
-    #    Historia de usuario # 6: Como Gerente de 
-    #Holtons en Colombia, quiero que las 
-    #habitaciones de huéspedes que acaban de 
-    #realizar su salida queden disponibles, para así 
-    #poder asignarlas a nuevos huéspedes que 
-    #lleguen a un hotel.
-
-        
+       
     
     # Historia de usuario # 7: Como Gerente de 
     #Holtons en Colombia, deseo establecer como no 
@@ -185,23 +160,9 @@ class Hotel:
             habitacionEncontrada.estado = self.estadoHabitacion[2]
         else:
             print("No se encontró la habitación")
-    #    Historia de usuario # 8: Como Gerente 
-    #de Holtons en Colombia, deseo recibir un 
-    #informe detallado que muestre los ingresos 
-    #obtenidos por la cadena, el número de 
-    #huéspedes atendidos y la cantidad de 
-    #habitaciones ocupadas, para evaluar el 
-    #cumplimiento de nuestras metas 
-    #empresariales.
 
 
-    #Historia de usuario # 9: Como Gerente 
-    #de Holtons en Colombia, quisiera conocer 
-    #cuál es la zona del hotel con mayor 
-    #afluencia y la tasa de ocupación en 
-    #determinado momento, para impulsar 
-    #estrategias que incrementen la afluencia de 
-    #huéspedes en nuestros establecimientos.
+    #Historia de usuario # 9: Como Gerente     #de Holtons en Colombia, quisiera conocer  #cuál es la zona del hotel con mayor #afluencia y la tasa de ocupación en #determinado momento, para impulsar #estrategias que incrementen la afluencia de #huéspedes en nuestros establecimientos.
 
     def mostrarZonaMayorAfluencia(self):
         afluenciaBasico = 0
@@ -255,6 +216,3 @@ class Hotel:
         if(totalMujeres != 0):
             porcentajeMujeres = (totalMujeres/(totalHombres+totalMujeres))*100
         return porcentajeHombres, porcentajeMujeres
-    
-
-    
