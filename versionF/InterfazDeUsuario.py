@@ -213,28 +213,32 @@ def main():
                 if cadenaHoltonInstance.hoteles == []:
                     print("No hay hoteles registrados.")
                     continue
-                
+
                 cadenaHoltonInstance.mostrarInforme()
 
             elif opcion == 9:
                 if cadenaHoltonInstance.hoteles == []:
                     print("No hay hoteles registrados.")
                     continue
-                print(f"Zona con mayor afluencia: {cadenaHoltonInstance.mostrarZonaMayorAfluencia()}")
+                print("\nSeleccione el hotel de donde quiere ver información\n")
+                cadenaHoltonInstance.mostrarHotelesSel()
+                hotelElegidoPosicion = int(input("\nSeleccione una opcion: "))
+                hotel = cadenaHoltonInstance.hoteles[hotelElegidoPosicion-1]
+                print(f"Nombre del hotel: {hotel.nombre}, Ciudad: {hotel.ciudad}, Tipo de hotel: {hotel.tipoDeHotel}")
+                print(f"Zona con mayor afluencia: {hotel.mostrarZonaMayorAfluencia()}")
 
 
             elif opcion == 10:
                 if cadenaHoltonInstance.hoteles == []:
                     print("No hay hoteles registrados.")
                     continue
-                elif cadenaHoltonInstance.mostrarPorcentajeHombres() == -1:
-                    print("No hay huéspedes registrados.")
-                    continue
-                elif cadenaHoltonInstance.mostrarPorcentajeMujeres() == -1:
-                    print("No hay huéspedes registrados.")
-                    continue
-                print(f"Porcentaje de hombres: {cadenaHoltonInstance.mostrarPorcentajeHombres()}%")
-                print(f"Porcentaje de mujeres: {cadenaHoltonInstance.mostrarPorcentajeMujeres()}%")
+                
+                cadenaHoltonInstance.mostrarHotelesSel()
+                hotelElegidoPosicion = int(input("\nSeleccione una opcion: "))
+                hotel = cadenaHoltonInstance.hoteles[hotelElegidoPosicion-1]
+                print(f"Nombre del hotel: {hotel.nombre}, Ciudad: {hotel.ciudad}, Tipo de hotel: {hotel.tipoDeHotel}")
+                print(f"Porcentaje de hombres: {hotel.mostrarPorcentajeHombresYMujeres()[0]}%")
+                print(f"Porcentaje de mujeres: {hotel.mostrarPorcentajeHombresYMujeres()[1]}%")
 
             elif opcion == 11:
                 print("Gracias por usar la aplicación. ¡Hasta luego!")
