@@ -30,31 +30,3 @@ huesped = Huesped("Pedro", "123456289", datetime(2004, 7, 30), "Masculino", date
 huesped2 = Huesped("Maria", "123416789", datetime(2004, 7, 30), "Femenino", datetime(2023, 7, 30), datetime(2023, 7, 31))
 asignada = cadena.asignarHabitacion(201, [huesped, huesped2], HotelE)
 print(f"Se asignó la habitación {HotelE.habitacionesH[1][0].numeroHabitacion} del hotel {HotelE.nombre} al huésped {huesped.nombreCompleto} y {huesped2.nombreCompleto}")
-
-# Quinta historia de usuario
-habitacionEncontrada = HotelE.buscarHabitacion(201, 2)
-montoPagar = cadena.cuantasNoches(habitacionEncontrada) * habitacionEncontrada.precioNoches * len(asignada.huespedes)
-print(f"El monto a pagar es de {montoPagar}")
-
-# Sexta historia de usuario
-habitacionEncontrada = HotelE.buscarHabitacion(201, 2)
-cadena.desocuparHabitacion(habitacionEncontrada)
-print(f"Se desocupó la habitación {habitacionEncontrada.numeroHabitacion} del hotel {HotelE.nombre}")
-
-# Septima historia de usuario
-ihnabilitar = cadena.inhabilitarHabitacion(201, 2, HotelE)
-print(f"Se inhabilitó la habitación {ihnabilitar.numeroHabitacion} del hotel {HotelE.nombre}")
-
-# Octava historia de usuario
-
-InformeDetallado = cadena.informeDetallado()
-print(f"El informe detallado es: {InformeDetallado}")
-
-# Novena historia de usuario
-
-zonaConMayorAfluencia = cadena.zonaConMayorAfluencia()
-print(f"La zona con mayor afluencia es: {zonaConMayorAfluencia}")
-
-# Decima historia de usuario
-
-porcentajesHombresMujeres = cadena.porcentajesHombresMujeres()
